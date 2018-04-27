@@ -1,0 +1,17 @@
+<study name="$!name">  
+    <one>$!name</one>  
+    <two>$!age</two>  
+    <three>$!sex</three>  
+    
+    <user>  
+    <one>$!user.name</one>  
+    <two>$!user.age</two>  
+    <three>$!user.pwd</three>  
+	</user>
+	<loop>
+		   #foreach($element in $list)
+            <a>This is $element</a>
+   			 #end
+	</loop>  
+</study>  
+
