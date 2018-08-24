@@ -9,6 +9,9 @@ import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 
+/**
+ * 丢弃任何进入的数据 启动服务端的ServerHandler
+ */
 public class NettyServer {
 	private int port;
 
@@ -17,6 +20,14 @@ public class NettyServer {
 	}
 
 	public void run() {
+		/***
+		 * NioEventLoopGroup 是用来处理I/O操作的多线程事件循环器，
+		 * Netty提供了许多不同的EventLoopGroup的实现用来处理不同传输协议。 在这个例子中我们实现了一个服务端的应用，
+		 * 因此会有2个NioEventLoopGroup会被使用。 第一个经常被叫做‘boss’，用来接收进来的连接。
+		 * 第二个经常被叫做‘worker’，用来处理已经被接收的连接， 一旦‘boss’接收到连接，就会把连接信息注册到‘worker’上。
+		 * 如何知道多少个线程已经被使用，如何映射到已经创建的Channels上都需要依赖于EventLoopGroup的实现，
+		 * 并且可以通过构造函数来配置他们的关系。
+		 */
 		EventLoopGroup bossGroup = new NioEventLoopGroup(); // 用于处理服务器端接收客户端连接
 		EventLoopGroup workerGroup = new NioEventLoopGroup(); // 进行网络通信（读写）
 		try {

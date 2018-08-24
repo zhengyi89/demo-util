@@ -24,6 +24,7 @@ public class NettyClient {
         ChannelFuture future = bootstrap.connect("127.0.0.1", 8379).sync();  
         future.channel().writeAndFlush(Unpooled.copiedBuffer("777".getBytes()));  
         future.channel().closeFuture().sync();  
-        workerGroup.shutdownGracefully();  
+        workerGroup.shutdownGracefully();
+
     }  
 }

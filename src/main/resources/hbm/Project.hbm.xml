@@ -1,0 +1,14 @@
+<hibernate-mapping>
+    <class name="com.test.h2.pojo.Project" table="Project">
+        <id name="projectId" column="project_id" type="int">
+            <generator class="identity"></generator>
+        </id>
+        <property name="userId" column="user_id" type="int"></property>
+        <property name="projectName" column="project_name" type="string"></property>
+        <property name="projectPath" column="project_path" type="string"></property>
+        <property name="status" column="status" type="string"></property>
+        <property name="resultFile" column="result_file" type="string"></property>
+        <property name="size" column="size" type="string"></property>
+        <property name="createTime" column="create_time" type="timestamp"></property>
+    </class>
+</hibernate-mapping>

@@ -22,7 +22,7 @@ public class ConcurrentTest {
 		CountDownLatch latch = new CountDownLatch(1);// 模拟5人并发请求，用户钱包
 
 		for (int i = 0; i < 5; i++) {// 模拟5个用户
-			AnalogUser analogUser = new AnalogUser("user" + i, "58899dcd-46b0-4b16-82df-bdfd0d953bfb", "1", "20.024",
+			AnalogUser analogUser = new AnalogUser("User" + i, "58899dcd-46b0-4b16-82df-bdfd0d953bfb", "1", "20.024",
 					latch);
 			analogUser.start();
 		}

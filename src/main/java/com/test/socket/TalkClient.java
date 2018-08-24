@@ -8,32 +8,32 @@ public class TalkClient {
 	public static void main(String args[]) {
 		try{
 			Socket socket=new Socket("127.0.0.1",4700);
-			//Ïò±¾»úµÄ4700¶Ë¿Ú·¢³ö¿Í»§ÇëÇó
+			//ï¿½ò±¾»ï¿½ï¿½ï¿½4700ï¿½Ë¿Ú·ï¿½ï¿½ï¿½ï¿½Í»ï¿½ï¿½ï¿½ï¿½ï¿½
 			BufferedReader sin=new BufferedReader(new InputStreamReader(System.in));
-			//ÓÉÏµÍ³±ê×¼ÊäÈëÉè±¸¹¹ÔìBufferedReader¶ÔÏó
+			//ï¿½ï¿½ÏµÍ³ï¿½ï¿½×¼ï¿½ï¿½ï¿½ï¿½ï¿½è±¸ï¿½ï¿½ï¿½ï¿½BufferedReaderï¿½ï¿½ï¿½ï¿½
 			PrintWriter os=new PrintWriter(socket.getOutputStream());
-			//ÓÉSocket¶ÔÏóµÃµ½Êä³öÁ÷£¬²¢¹¹ÔìPrintWriter¶ÔÏó
+			//ï¿½ï¿½Socketï¿½ï¿½ï¿½ï¿½Ãµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½PrintWriterï¿½ï¿½ï¿½ï¿½
 			BufferedReader is=new BufferedReader(new InputStreamReader(socket.getInputStream()));
-			//ÓÉSocket¶ÔÏóµÃµ½ÊäÈëÁ÷£¬²¢¹¹ÔìÏàÓ¦µÄBufferedReader¶ÔÏó
+			//ï¿½ï¿½Socketï¿½ï¿½ï¿½ï¿½Ãµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó¦ï¿½ï¿½BufferedReaderï¿½ï¿½ï¿½ï¿½
 			String readline;
-			readline=sin.readLine(); //´ÓÏµÍ³±ê×¼ÊäÈë¶ÁÈëÒ»×Ö·û´®
+			readline=sin.readLine(); //ï¿½ï¿½ÏµÍ³ï¿½ï¿½×¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½Ö·ï¿½ï¿½ï¿½
 			while(!readline.equals("bye")){
-			//Èô´Ó±ê×¼ÊäÈë¶ÁÈëµÄ×Ö·û´®Îª "bye"ÔòÍ£Ö¹Ñ­»·
+			//ï¿½ï¿½ï¿½Ó±ï¿½×¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½Îª "bye"ï¿½ï¿½Í£Ö¹Ñ­ï¿½ï¿½
 			os.println(readline);
-			//½«´ÓÏµÍ³±ê×¼ÊäÈë¶ÁÈëµÄ×Ö·û´®Êä³öµ½Server
+			//ï¿½ï¿½ï¿½ï¿½ÏµÍ³ï¿½ï¿½×¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½DiscardServer
 			os.flush();
-			//Ë¢ĞÂÊä³öÁ÷£¬Ê¹ServerÂíÉÏÊÕµ½¸Ã×Ö·û´®
-			System.out.println("Client:"+readline);
-			//ÔÚÏµÍ³±ê×¼Êä³öÉÏ´òÓ¡¶ÁÈëµÄ×Ö·û´®
-			System.out.println("Server:"+is.readLine());
-			//´ÓServer¶ÁÈëÒ»×Ö·û´®£¬²¢´òÓ¡µ½±ê×¼Êä³öÉÏ
-			readline=sin.readLine(); //´ÓÏµÍ³±ê×¼ÊäÈë¶ÁÈëÒ»×Ö·û´®
-			} //¼ÌĞøÑ­»·
-			os.close(); //¹Ø±ÕSocketÊä³öÁ÷
-			is.close(); //¹Ø±ÕSocketÊäÈëÁ÷
-			socket.close(); //¹Ø±ÕSocket
+			//Ë¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¹Serverï¿½ï¿½ï¿½ï¿½ï¿½Õµï¿½ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½
+			System.out.println("TimeClient:"+readline);
+			//ï¿½ï¿½ÏµÍ³ï¿½ï¿½×¼ï¿½ï¿½ï¿½ï¿½Ï´ï¿½Ó¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½
+			System.out.println("DiscardServer:"+is.readLine());
+			//ï¿½ï¿½DiscardServerï¿½ï¿½ï¿½ï¿½Ò»ï¿½Ö·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó¡ï¿½ï¿½ï¿½ï¿½×¼ï¿½ï¿½ï¿½ï¿½ï¿½
+			readline=sin.readLine(); //ï¿½ï¿½ÏµÍ³ï¿½ï¿½×¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½Ö·ï¿½ï¿½ï¿½
+			} //ï¿½ï¿½ï¿½ï¿½Ñ­ï¿½ï¿½
+			os.close(); //ï¿½Ø±ï¿½Socketï¿½ï¿½ï¿½ï¿½ï¿½
+			is.close(); //ï¿½Ø±ï¿½Socketï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+			socket.close(); //ï¿½Ø±ï¿½Socket
 			}catch(Exception e) {
-			System.out.println("Error"+e); //³ö´í£¬Ôò´òÓ¡³ö´íĞÅÏ¢
+			System.out.println("Error"+e); //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
 		}
 	}
 }

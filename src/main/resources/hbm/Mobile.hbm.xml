@@ -1,0 +1,12 @@
+<hibernate-mapping>
+    <class name="com.test.h2.pojo.Mobile" table="Mobile">
+        <id name="mobileId" column="mobile_id" type="int">
+            <generator class="identity"></generator>
+        </id>
+        <property name="projectId" column="project_id" type="int"></property>
+        <property name="mobileName" column="mobile_name" type="string"></property>
+        <property name="mobileType" column="mobile_type" type="string"></property>
+        <property name="imagePath" column="image_path" type="string"></property>
+        <property name="thumbnailPath" column="thumbnail_path" type="string"></property>
+    </class>
+</hibernate-mapping>

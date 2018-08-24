@@ -9,51 +9,51 @@ public class TalkServer{
 		try{
 			ServerSocket server=null;
 			try{
-				//´´½¨Ò»¸öServerSocketÔÚ¶Ë¿Ú4700¼àÌı¿Í»§ÇëÇó
+				//ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ServerSocketï¿½Ú¶Ë¿ï¿½4700ï¿½ï¿½ï¿½ï¿½ï¿½Í»ï¿½ï¿½ï¿½ï¿½ï¿½
 				server=new ServerSocket(4700);
 			}catch(Exception e) {
-				//³ö´í£¬´òÓ¡³ö´íĞÅÏ¢
+				//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
 				System.out.println("can not listen to:"+e);
 			}
 			Socket socket=null;
 			try{
-				//Ê¹ÓÃaccept()×èÈûµÈ´ı¿Í»§ÇëÇó£¬ÓĞ¿Í»§
-				//ÇëÇóµ½À´Ôò²úÉúÒ»¸öSocket¶ÔÏó£¬²¢¼ÌĞøÖ´ĞĞ
+				//Ê¹ï¿½ï¿½accept()ï¿½ï¿½ï¿½ï¿½ï¿½È´ï¿½ï¿½Í»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ğ¿Í»ï¿½
+				//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Socketï¿½ï¿½ï¿½ó£¬²ï¿½ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ï¿½
 				socket=server.accept();
 				}catch(Exception e) {
-					//³ö´í£¬´òÓ¡³ö´íĞÅÏ¢
+					//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
 					System.out.println("Error."+e);
 			}
 			String line;
 			BufferedReader is=new BufferedReader(new InputStreamReader(socket.getInputStream()));
-			//ÓÉSocket¶ÔÏóµÃµ½ÊäÈëÁ÷£¬²¢¹¹ÔìÏàÓ¦µÄBufferedReader¶ÔÏó
+			//ï¿½ï¿½Socketï¿½ï¿½ï¿½ï¿½Ãµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó¦ï¿½ï¿½BufferedReaderï¿½ï¿½ï¿½ï¿½
 			PrintWriter os=new PrintWriter(socket.getOutputStream());
-			//ÓÉSocket¶ÔÏóµÃµ½Êä³öÁ÷£¬²¢¹¹ÔìPrintWriter¶ÔÏó
+			//ï¿½ï¿½Socketï¿½ï¿½ï¿½ï¿½Ãµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½PrintWriterï¿½ï¿½ï¿½ï¿½
 			BufferedReader sin=new BufferedReader(new InputStreamReader(System.in));
-			//ÓÉÏµÍ³±ê×¼ÊäÈëÉè±¸¹¹ÔìBufferedReader¶ÔÏó
-			System.out.println("Client:"+is.readLine());
-			//ÔÚ±ê×¼Êä³öÉÏ´òÓ¡´Ó¿Í»§¶Ë¶ÁÈëµÄ×Ö·û´®
+			//ï¿½ï¿½ÏµÍ³ï¿½ï¿½×¼ï¿½ï¿½ï¿½ï¿½ï¿½è±¸ï¿½ï¿½ï¿½ï¿½BufferedReaderï¿½ï¿½ï¿½ï¿½
+			System.out.println("TimeClient:"+is.readLine());
+			//ï¿½Ú±ï¿½×¼ï¿½ï¿½ï¿½ï¿½Ï´ï¿½Ó¡ï¿½Ó¿Í»ï¿½ï¿½Ë¶ï¿½ï¿½ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½
 			line=sin.readLine();
-			//´Ó±ê×¼ÊäÈë¶ÁÈëÒ»×Ö·û´®
+			//ï¿½Ó±ï¿½×¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½Ö·ï¿½ï¿½ï¿½
 			while(!line.equals("bye")){
-				//Èç¹û¸Ã×Ö·û´®Îª "bye"£¬ÔòÍ£Ö¹Ñ­»·
+				//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½Îª "bye"ï¿½ï¿½ï¿½ï¿½Í£Ö¹Ñ­ï¿½ï¿½
 				os.println(line);
-				//Ïò¿Í»§¶ËÊä³ö¸Ã×Ö·û´®
+				//ï¿½ï¿½Í»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½
 				os.flush();
-				//Ë¢ĞÂÊä³öÁ÷£¬Ê¹ClientÂíÉÏÊÕµ½¸Ã×Ö·û´®
-				System.out.println("Server:"+line);
-				//ÔÚÏµÍ³±ê×¼Êä³öÉÏ´òÓ¡¶ÁÈëµÄ×Ö·û´®
-				System.out.println("Client:"+is.readLine());
-				//´ÓClient¶ÁÈëÒ»×Ö·û´®£¬²¢´òÓ¡µ½±ê×¼Êä³öÉÏ
+				//Ë¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¹Clientï¿½ï¿½ï¿½ï¿½ï¿½Õµï¿½ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½
+				System.out.println("DiscardServer:"+line);
+				//ï¿½ï¿½ÏµÍ³ï¿½ï¿½×¼ï¿½ï¿½ï¿½ï¿½Ï´ï¿½Ó¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½
+				System.out.println("TimeClient:"+is.readLine());
+				//ï¿½ï¿½TimeClientï¿½ï¿½ï¿½ï¿½Ò»ï¿½Ö·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó¡ï¿½ï¿½ï¿½ï¿½×¼ï¿½ï¿½ï¿½ï¿½ï¿½
 				line=sin.readLine();
-				//´ÓÏµÍ³±ê×¼ÊäÈë¶ÁÈëÒ»×Ö·û´®
-			} //¼ÌĞøÑ­»·
-			os.close(); //¹Ø±ÕSocketÊä³öÁ÷
-			is.close(); //¹Ø±ÕSocketÊäÈëÁ÷
-			socket.close(); //¹Ø±ÕSocket
-			server.close(); //¹Ø±ÕServerSocket
+				//ï¿½ï¿½ÏµÍ³ï¿½ï¿½×¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½Ö·ï¿½ï¿½ï¿½
+			} //ï¿½ï¿½ï¿½ï¿½Ñ­ï¿½ï¿½
+			os.close(); //ï¿½Ø±ï¿½Socketï¿½ï¿½ï¿½ï¿½ï¿½
+			is.close(); //ï¿½Ø±ï¿½Socketï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+			socket.close(); //ï¿½Ø±ï¿½Socket
+			server.close(); //ï¿½Ø±ï¿½ServerSocket
 			}catch(Exception e){
-				//³ö´í£¬´òÓ¡³ö´íĞÅÏ¢
+				//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
 				System.out.println("Error:"+e);
 			}
 	}

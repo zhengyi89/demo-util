@@ -53,7 +53,7 @@ public class RedisUtils {
     */
    public RedissonClient getRedisson(Config config){
       RedissonClient redisson=Redisson.create(config);
-      logger.info("成功连接Redis Server");
+      logger.info("成功连接Redis DiscardServer");
       return redisson;
    } 
    
@@ -67,7 +67,7 @@ public class RedisUtils {
       Config config=new Config();
       config.useSingleServer().setAddress(ip+":"+port);
       RedissonClient redisson=Redisson.create(config);
-      logger.info("成功连接Redis Server"+"\t"+"连接"+ip+":"+port+"服务器");
+      logger.info("成功连接Redis DiscardServer"+"\t"+"连接"+ip+":"+port+"服务器");
       return redisson;
    }
    
