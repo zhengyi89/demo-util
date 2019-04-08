@@ -5,6 +5,7 @@ import java.util.regex.Pattern;
 
 import org.junit.Test;
 
+import com.alibaba.druid.sql.visitor.functions.Char;
 import com.test.string.StringUtils;
 
 /** 
@@ -12,6 +13,22 @@ import com.test.string.StringUtils;
  * @date 2016/07/19
  */
 public class TestMain {
+	
+	/**
+	 * 截取最后一个小数点以及后面的部分
+	 */
+	@Test
+	public void test1(){
+		String uri = "aaaa.bbb.ccc?aa8";
+		uri = uri.replaceAll("\\.[^\\.^/]+$", "");
+		System.out.println(uri);
+		
+		
+		System.out.println(uri.replace('a', ' '));
+	}
+	
+	
+	
 	public static void main(String[] args) {
 		String str = "会员特惠价： 普通会员 ：10.01 ; 铜牌会员 ：10.02 ; 金牌会员 ：10.03 ; 钻石会员 ：10.04 ;";
 //		groupMatch(str);

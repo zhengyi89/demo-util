@@ -451,20 +451,19 @@
 			<!--<scope>test</scope>-->
 		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/org.apache.commons.csv/commons-csv -->
-		<dependency>
-			<groupId>org.apache.commons.csv</groupId>
-			<artifactId>commons-csv</artifactId>
-			<version>1.0</version>
-		</dependency>
-
 		<dependency>
 			<groupId>org.python</groupId>
 			<artifactId>jython</artifactId>
 			<version>2.7.0</version>
 		</dependency>
 
-
+		<!-- https://mvnrepository.com/artifact/org.quartz-scheduler/quartz -->
+		<dependency>
+		    <groupId>org.quartz-scheduler</groupId>
+		    <artifactId>quartz</artifactId>
+		    <version>2.3.0</version>
+		</dependency>
+		
 	</dependencies>
 	<build>
 		<plugins>
