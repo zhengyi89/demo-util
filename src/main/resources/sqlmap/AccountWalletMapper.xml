@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.hengbao.taxcredit.dao.AccountWalletMapper" >
-  <resultMap id="BaseResultMap" type="com.hengbao.taxcredit.model.AccountWallet" >
+<mapper namespace="com.test.mybatis.dao.AccountWalletMapper" >
+  <resultMap id="BaseResultMap" type="AccountWallet" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="user_open_id" property="userOpenId" jdbcType="VARCHAR" />
     <result column="user_amount" property="userAmount" jdbcType="DECIMAL" />
@@ -26,7 +26,7 @@
     delete from account_wallet
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.hengbao.taxcredit.model.AccountWallet" >
+  <insert id="insert" parameterType="AccountWallet" >
     insert into account_wallet (id, user_open_id, user_amount, 
       create_time, update_time, pay_password, 
       is_open, check_key, version
@@ -36,7 +36,7 @@
       #{isOpen,jdbcType=INTEGER}, #{checkKey,jdbcType=VARCHAR}, #{version,jdbcType=INTEGER}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.hengbao.taxcredit.model.AccountWallet" >
+  <insert id="insertSelective" parameterType="AccountWallet" >
     insert into account_wallet
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -97,7 +97,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.hengbao.taxcredit.model.AccountWallet" >
+  <update id="updateByPrimaryKeySelective" parameterType="AccountWallet" >
     update account_wallet
     <set >
       <if test="userOpenId != null" >
@@ -127,7 +127,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.hengbao.taxcredit.model.AccountWallet" >
+  <update id="updateByPrimaryKey" parameterType="AccountWallet" >
     update account_wallet
     set user_open_id = #{userOpenId,jdbcType=VARCHAR},
       user_amount = #{userAmount,jdbcType=DECIMAL},
@@ -148,7 +148,7 @@
    where user_open_id = #{openId,jdbcType=VARCHAR}  
  </select>  
  <!--用户钱包数据更改 ，通过乐观锁(version机制)实现 -->  
- <update id="updateAccountWallet" parameterType="com.settlement.model.AccountWallet">  
+ <update id="updateAccountWallet" parameterType="AccountWallet">  
          <![CDATA[ 
             update account_wallet set user_amount = #{userAmount,jdbcType=DECIMAL}, version = version + 1 where id =#{id,jdbcType=INTEGER} and version = #{version,jdbcType=INTEGER}  
           ]]>   
