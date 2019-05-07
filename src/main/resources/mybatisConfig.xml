@@ -28,6 +28,7 @@
 	<!-- 映射文件 -->
 	<mappers>
 		<mapper resource="sqlmap/LogInfoMapper.xml" />
+		<mapper resource="sqlmap/UserInfoMapper.xml" />
 		<mapper resource="sqlmap/AccountWalletMapper.xml" />
 		<mapper resource="sqlmap/StudentMapper.xml" />
 	</mappers>
