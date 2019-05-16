@@ -19,16 +19,15 @@ public class ServiceTest {
 	LogInfoService logInfoService;
 	@Autowired
 	UserInfoService userInfoService;
-	
-	@Autowired
 
+	@Autowired
 	@Test
 	public void logInsert() {
 		LogInfo info = new LogInfo();
 		info.setVal("111");
 		logInfoService.insert(info);
 	}
-	
+
 	@Test
 	public void userInsert() {
 		UserInfo info = new UserInfo();
@@ -36,12 +35,11 @@ public class ServiceTest {
 		info.setMobile("15211111111");
 		userInfoService.insert(info);
 	}
-	
+
 	@Test
 	public void selectUserByIdTest() {
 		UserInfo user = userInfoService.selectById(1);
-		System.out.println("------" + user == null ? null : JSON.toJSONString(user));
+		System.out.println("------" + JSON.toJSONString(user));
 	}
-	
-	
+
 }
