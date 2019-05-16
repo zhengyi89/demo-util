@@ -1,11 +1,11 @@
-package com.test.mybatis.service.impl;
+package com.test.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.test.mybatis.dao.AccountWalletMapper;
-import com.test.mybatis.model.AccountWallet;
-import com.test.mybatis.service.AccountWalletService;
+import com.test.bean.AccountWallet;
+import com.test.mapper.AccountWalletMapper;
+import com.test.service.AccountWalletService;
 
 @Service
 public class AccountWalletServiceImpl implements AccountWalletService {

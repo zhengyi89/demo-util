@@ -1,7 +1,7 @@
-package com.test.spring.zhengy.service.impl;
+package com.test.service.impl;
 
+import com.test.service.ChrisService;
 import com.test.spring.zhengy.anno.SelfService;
-import com.test.spring.zhengy.service.ChrisService;
 
 @SelfService("chrisService")
 public class ChrisServiceImpl implements ChrisService {

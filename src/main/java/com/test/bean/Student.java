@@ -1,4 +1,4 @@
-package com.test.mybatis.model;
+package com.test.bean;
 
 import java.util.Date;
 

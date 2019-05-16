@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.dubbo.common.utils.StringUtils;
-import com.test.mybatis.model.AccountWallet;
-import com.test.mybatis.service.AccountWalletService;
+import com.test.bean.AccountWallet;
+import com.test.service.AccountWalletService;
 
 /**
  * 用户钱包Controller

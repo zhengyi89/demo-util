@@ -22,7 +22,7 @@
 	</settings>
 	<!-- 实体类别名 -->
 	<typeAliases>
-		<package name="com.test.mybatis.model" />
+		<package name="com.test.bean" />
 	</typeAliases>
 
 	<!-- 映射文件 -->

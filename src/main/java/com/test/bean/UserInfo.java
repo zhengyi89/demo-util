@@ -1,4 +1,4 @@
-package com.test.mybatis.model;
+package com.test.bean;
 
 public class UserInfo {
 	private Integer id;

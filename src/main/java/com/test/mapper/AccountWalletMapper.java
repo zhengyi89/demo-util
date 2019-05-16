@@ -1,6 +1,6 @@
-package com.test.mybatis.dao;
+package com.test.mapper;
 
-import com.test.mybatis.model.AccountWallet;
+import com.test.bean.AccountWallet;
 
 
 public interface AccountWalletMapper {

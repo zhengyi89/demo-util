@@ -1,4 +1,4 @@
-package com.test.mybatis.dao;
+package com.test.service;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -6,15 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import com.alibaba.fastjson.JSON;
 import com.test.Application;
-import com.test.mybatis.model.LogInfo;
-import com.test.mybatis.model.UserInfo;
-import com.test.mybatis.service.LogInfoService;
-import com.test.mybatis.service.UserInfoService;
+import com.test.bean.LogInfo;
+import com.test.bean.UserInfo;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = Application.class)
-public class ApplicationTests {
+public class ServiceTest {
 
 	@Autowired
 	LogInfoService logInfoService;
@@ -37,4 +36,12 @@ public class ApplicationTests {
 		info.setMobile("15211111111");
 		userInfoService.insert(info);
 	}
+	
+	@Test
+	public void selectUserByIdTest() {
+		UserInfo user = userInfoService.selectById(1);
+		System.out.println("------" + user == null ? null : JSON.toJSONString(user));
+	}
+	
+	
 }

@@ -34,5 +34,15 @@ spring:
         #将当前关闭动作记录到日志
         logAbandoned: true
 
+# REDIS (RedisProperties)
+    redis:
+        host: redis.zbjdl.in
+        port: 6378
+        password: 
+        timeout: 1000
+        pool:
+            max-active: -1
+            max-idle: 8
+            min-idle: 8
 mybatis:
     config: classpath:mybatisConfig.xml

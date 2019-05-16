@@ -1,4 +1,4 @@
-package com.test.mybatis.model;
+package com.test.bean;
 
 public class LogInfo {
 	private int id;

@@ -1,8 +1,8 @@
-package com.test.mybatis.dao;
+package com.test.mapper;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import com.test.mybatis.model.LogInfo;
+import com.test.bean.LogInfo;
 
 
 @Mapper

@@ -8,8 +8,6 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
-import org.python.jline.internal.InputStreamReader;
-
 public class TomcatV02 {
 
 	public static void main(String[] args) throws IOException {

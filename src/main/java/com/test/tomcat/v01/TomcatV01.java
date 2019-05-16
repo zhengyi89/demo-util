@@ -3,11 +3,11 @@ package com.test.tomcat.v01;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-import org.python.jline.internal.InputStreamReader;
 
 public class TomcatV01 {
 

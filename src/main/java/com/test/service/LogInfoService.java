@@ -1,6 +1,6 @@
-package com.test.mybatis.service;
+package com.test.service;
 
-import com.test.mybatis.model.LogInfo;
+import com.test.bean.LogInfo;
 
 public interface LogInfoService {
 

@@ -9,10 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.test.service.ChrisService;
 import com.test.spring.zhengy.anno.SelfAutowired;
 import com.test.spring.zhengy.anno.SelfController;
 import com.test.spring.zhengy.anno.SelfRequestMapping;
-import com.test.spring.zhengy.service.ChrisService;
 
 @SelfController
 @SelfRequestMapping("/chris")

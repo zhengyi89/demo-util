@@ -1,4 +1,4 @@
-package com.test.spring.zhengy.service;
+package com.test.service;
 
 
 public interface ChrisService {

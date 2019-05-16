@@ -1,6 +1,6 @@
-package com.test.mybatis.dao;
+package com.test.mapper;
 
-import com.test.mybatis.model.Student;
+import com.test.bean.Student;
 
 public interface StudentMapper {
 	Student findStudentById(Integer id); 

@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @SpringBootApplication
-@MapperScan("com.test.mybatis.dao")
+@MapperScan("com.test.mapper")
 public class Application {
 	@Value("${book.author}")
 	private String author;

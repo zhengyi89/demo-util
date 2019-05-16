@@ -1,6 +1,6 @@
-package com.test.mybatis.service;
+package com.test.service;
 
-import com.test.mybatis.model.AccountWallet;
+import com.test.bean.AccountWallet;
 
 public interface AccountWalletService {
 
