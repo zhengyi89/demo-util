@@ -1,27 +1,22 @@
 package com.test.proxy;
 
 /**
- * @author ceshi
- * @Title: ${file_name}
- * @Package ${package_name}
- * @Description: ${todo}
- * @date 18/7/17上午11:05
+ * 静态代理实现
+ * 
+ * @author zhengy
+ * @date: 2019年5月19日 下午8:41:11
  */
 public class ProxySubject implements Subject {
 
-    private Subject subject;
+	private Subject subject;
 
-    public ProxySubject(Subject subject) {
-        this.subject = subject;
-    }
+	public ProxySubject(Subject subject) {
+		this.subject = subject;
+	}
 
-    @Override
-    public void visit() {
-        subject.visit();
-    }
-
-    public static void main(String[] args) {
-        ProxySubject subject = new ProxySubject(new RealSubject());
-        subject.visit();
-    }
+	@Override
+	public void visit() {
+		System.out.println("代理方法。。。");
+		subject.visit();
+	}
 }

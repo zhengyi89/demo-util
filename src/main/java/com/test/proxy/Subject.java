@@ -1,12 +1,11 @@
 package com.test.proxy;
 
 /**
- * @author ceshi
- * @Title: ${file_name}
- * @Package ${package_name}
- * @Description: ${todo}
- * @date 18/7/17上午11:04
+ * 代理对象接口类
+ * 
+ * @author zhengy
+ * @date: 2019年5月19日 下午8:58:16
  */
 public interface Subject {
-    void visit();
+	void visit();
 }

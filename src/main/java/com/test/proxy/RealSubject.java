@@ -1,14 +1,13 @@
 package com.test.proxy;
 
 /**
- * @author ceshi
- * @Title: ${file_name}
- * @Package ${package_name}
- * @Description: ${todo}
- * @date 18/7/17上午11:04
+ * 被代理对象
+ * 
+ * @author zhengy
+ * @date: 2019年5月19日 下午8:57:59
  */
 public class RealSubject implements Subject {
-    private String name = "byhieg";
+    private String name = "zhengy";
     @Override
     public void visit() {
         System.out.println(name);
