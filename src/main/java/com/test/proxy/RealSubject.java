@@ -7,9 +7,8 @@ package com.test.proxy;
  * @date: 2019年5月19日 下午8:57:59
  */
 public class RealSubject implements Subject {
-    private String name = "zhengy";
-    @Override
-    public void visit() {
-        System.out.println(name);
-    }
+	@Override
+	public void visit() {
+		System.out.println("realsubject execute");
+	}
 }

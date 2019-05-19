@@ -4,6 +4,10 @@ import java.lang.reflect.Proxy;
 
 import org.junit.Test;
 
+import com.test.proxy.cglib.CglibProxy;
+import com.test.proxy.cglib.RealSubject1;
+import com.test.proxy.jdk.DynamicProxy;
+
 public class Client {
 
 	/**
@@ -24,6 +28,13 @@ public class Client {
 	@Test
 	public void proxyTest() {
 		ProxySubject subject = new ProxySubject(new RealSubject());
+		subject.visit();
+	}
+
+	@Test
+	public void cglibProxyTest() {
+		CglibProxy cglib = new CglibProxy();
+		RealSubject1 subject = (RealSubject1) cglib.getInstance(new RealSubject1());
 		subject.visit();
 	}
 }
