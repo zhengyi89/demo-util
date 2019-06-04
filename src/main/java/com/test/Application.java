@@ -6,6 +6,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @SpringBootApplication
@@ -16,7 +17,8 @@ public class Application {
 	@Value("${book.name}")
 	private String name;
 
-	@RequestMapping("/")
+	@RequestMapping("/test")
+	@ResponseBody
 	String index() {
 		return "book name:" + name + "and author is " + author;
 	}

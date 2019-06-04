@@ -31,7 +31,7 @@ public class ServiceTest {
 	@Test
 	public void userInsert() {
 		UserInfo info = new UserInfo();
-		info.setName("zhengy");
+		info.setUsername("zhengy");
 		info.setMobile("15211111111");
 		userInfoService.insert(info);
 	}

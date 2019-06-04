@@ -1,5 +1,7 @@
 package com.test.service.impl;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,5 +33,11 @@ public class UserInfoServiceImpl implements UserInfoService {
 	@Override
 	public void insert(UserInfo info) {
 		userInfoMapper.insert(info);
+	}
+
+	@Override
+	public UserInfo findByUsername(String s) {
+		List<UserInfo> userList = userInfoMapper.findList();
+		return userList == null ? null : userList.get(0);
 	}
 }

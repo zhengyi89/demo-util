@@ -1,14 +1,21 @@
 package com.test.mapper;
 
+import java.util.List;
+
 import com.test.bean.UserInfo;
 
 public interface UserInfoMapper {
-	int insert(UserInfo record);
+    int deleteByPrimaryKey(Integer id);
 
+    int insert(UserInfo record);
 
-	UserInfo selectById(Integer id);
+    int insertSelective(UserInfo record);
 
-	int updateByPrimaryKeySelective(UserInfo record);
+    UserInfo selectById(Integer id);
 
-	int updateByPrimaryKey(UserInfo record);
+    int updateByPrimaryKeySelective(UserInfo record);
+
+    int updateByPrimaryKey(UserInfo record);
+
+	List<UserInfo> findList();
 }
