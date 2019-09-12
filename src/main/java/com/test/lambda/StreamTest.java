@@ -27,8 +27,8 @@ public class StreamTest {
 
 		// doSalaryByFilter();
 
-		customFilter();
-
+//		customFilter();
+	printName();
 	}
 
 	static void printName() {
