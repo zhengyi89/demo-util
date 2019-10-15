@@ -36,7 +36,7 @@ public class HessianProxyFactoryUtil {
         // 服务器暴露出的地址
         String url = "http://localhost:8080/helloHessian.do";
 
-        // 客户端接口，需与服务端对象一样
+        // 客户端接口，需与服务端对象一样 
         try {
             HelloService helloHessian = HessianProxyFactoryUtil.getHessianClientBean(HelloService.class,url);
             String msg =  helloHessian.helloWorld("你好");

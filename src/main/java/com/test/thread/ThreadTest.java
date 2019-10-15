@@ -1,8 +1,5 @@
 package com.test.thread;
 
-import javafx.scene.paint.Stop;
-import org.junit.Test;
-
 import java.util.concurrent.TimeUnit;
 
 /**

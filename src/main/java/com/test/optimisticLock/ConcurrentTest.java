@@ -2,11 +2,7 @@ package com.test.optimisticLock;
 
 import java.text.SimpleDateFormat;  
 import java.util.Date;  
-import java.util.concurrent.CountDownLatch;  
-
-import javax.servlet.http.HttpUtils;
-
-import org.springframework.http.HttpRequest;
+import java.util.concurrent.CountDownLatch;
   
 
 /**
