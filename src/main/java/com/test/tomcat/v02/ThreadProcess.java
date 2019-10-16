@@ -28,7 +28,7 @@ public class ThreadProcess extends Thread {
 				}
 				System.out.println(msg);
 			}
-			// System.out.println("socket status : "+socket.get);
+			// System.out.println("com.test.socket status : "+com.test.socket.get);
 //			try {
 //				Thread.sleep(10000L);
 //			} catch (InterruptedException e) {

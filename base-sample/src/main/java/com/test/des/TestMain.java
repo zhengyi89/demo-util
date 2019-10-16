@@ -1,14 +1,7 @@
 package com.test.des;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-
 import org.junit.Test;
-import org.omg.IOP.Encoding;
 
-import com.test.io.Base64Test;
 
 /**
  * @author zhengy
