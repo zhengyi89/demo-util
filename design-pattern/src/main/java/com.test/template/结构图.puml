@@ -1,0 +1,30 @@
+@startuml
+
+abstract class AbstractClass{
+    +templateMethod():void
+    +specificMethod():void
+    +abstractMethod1():void
+    +abstractMethod2():void
+}
+
+note "public void TemplateMethod(){\n  specificMethod();\n  abstractMethod1();\n  abstractMethod2();\n}" as n1
+
+AbstractClass .. n1
+
+class ConcreteClass{
+    +abstractMethod1():void
+    +abstractMethod2():void
+}
+
+class Client{
+    -tm:AbstractClass
+    +main(String[] args):void
+}
+
+note "tm = new AbstractClass();\ntm.TemplateMethod();" as n2
+Client .. n2
+
+AbstractClass<|..ConcreteClass
+Client .left.>AbstractClass
+
+@enduml

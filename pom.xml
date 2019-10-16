@@ -4,7 +4,10 @@
     <groupId>com.zhengy</groupId>
     <artifactId>demo-util</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>war</packaging>
+    <modules>
+        <module>design-pattern</module>
+    </modules>
+    <packaging>pom</packaging>
     <name>demo-util</name>
     <description/>
 
