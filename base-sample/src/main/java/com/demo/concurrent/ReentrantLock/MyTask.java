@@ -23,11 +23,6 @@ public class MyTask {
 
     public void execute() {
         lock.lock();
-        try {
-            Thread.sleep(10);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         for (int i = 0; i < 3; i++) {
             System.out.println(Thread.currentThread().getName() + " " + i);
         }
