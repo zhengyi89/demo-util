@@ -1,4 +1,4 @@
-package com.demo.factoryMethod;
+package com.demo.abstractFactory;
 
 import javax.xml.parsers.*;
 import org.w3c.dom.*;

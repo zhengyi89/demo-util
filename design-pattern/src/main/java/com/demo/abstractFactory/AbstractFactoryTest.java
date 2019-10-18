@@ -1,4 +1,4 @@
-package com.demo.factoryMethod;
+package com.demo.abstractFactory;
 
 public class AbstractFactoryTest {
 	public static void main(String[] args) {
