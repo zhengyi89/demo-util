@@ -12,22 +12,22 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @SpringBootApplication
 @MapperScan("com.test.mapper")
 public class Application {
-	@Value("${book.author}")
-	private String author;
-	@Value("${book.name}")
-	private String name;
+    @Value("${book.author}")
+    private String author;
+    @Value("${book.name}")
+    private String name;
 
-	@RequestMapping("/test")
-	@ResponseBody
-	String index() {
-		return "book name:" + name + "and author is " + author;
-	}
+    @RequestMapping("/test")
+    @ResponseBody
+    String index() {
+        return "book name:" + name + "and author is " + author;
+    }
 
-	public static void main(String[] args) {
-		// 两种启动方式
+    public static void main(String[] args) {
+        // 两种启动方式
 //		SpringApplication springApplication = new SpringApplication(Application.class);
 //		springApplication.run(args);
-		SpringApplication.run(Application.class, args);
-	}
+        SpringApplication.run(Application.class, args);
+    }
 
 }
