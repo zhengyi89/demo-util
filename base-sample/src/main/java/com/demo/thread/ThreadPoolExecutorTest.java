@@ -1,9 +1,6 @@
 package com.demo.thread;
 
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.*;
 
 import org.junit.Test;
 
@@ -42,6 +39,7 @@ public class ThreadPoolExecutorTest {
 				e.printStackTrace();
 			}
 			cachedThreadPool.execute(new Runnable() {
+				@Override
 				public void run() {
 					System.out.println(index);
 				}
@@ -58,6 +56,7 @@ public class ThreadPoolExecutorTest {
 		for (int i = 0; i < 100; i++) {
 			final int index = i;
 			fixedThreadPool.execute(new Runnable() {
+				@Override
 				public void run() {
 					try {
 						System.out.println(index);
@@ -90,6 +89,7 @@ public class ThreadPoolExecutorTest {
 		 * 表示延迟1秒后每3秒执行一次
 		 */
 		scheduledThreadPool.scheduleAtFixedRate(new Runnable() {
+			@Override
 			public void run() {
 				System.out.println("delay 1 seconds, and excute every 3 seconds");
 			}
@@ -104,6 +104,7 @@ public class ThreadPoolExecutorTest {
 		for (int i = 0; i < 10; i++) {
 			final int index = i;
 			singleThreadExecutor.execute(new Runnable() {
+				@Override
 				public void run() {
 					try {
 						System.out.println(index);
@@ -116,5 +117,11 @@ public class ThreadPoolExecutorTest {
 		}
 		singleThreadExecutor.isShutdown();
 	}
+
+//
+//	public void test(){
+//		// TODO ThreadPoolExecutor 学习
+//		ThreadPoolExecutor.
+//	}
 
 }
