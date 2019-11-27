@@ -33,6 +33,15 @@ public class TestController {
     }
 
 
+    /**
+     * BindingResult使用
+     * 1.在属性的get方法上使用validation注解设置属性的校验规则和验证信息
+     * 2.controller方法绑定BindingResult对象，从bindingResult对象中获取验证结果信息
+     *
+     * @param reqDto
+     * @param bindingResult
+     * @return
+     */
     @PostMapping("bindingResult")
     public Object bindingResultTest(@RequestBody @Valid BindingResultDto reqDto, BindingResult bindingResult) {
         logger.info("开始调用bindingResult，入参：{}", JSON.toJSONString(reqDto));
