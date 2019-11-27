@@ -49,25 +49,25 @@ public class RedisConfiguration extends CachingConfigurerSupport {
 	@Autowired
 	private JedisConnectionFactory jedisConnectionFactory;
 
-	@Bean
-	@Override
-	public KeyGenerator keyGenerator() {
-		// 设置自动key的生成规则，配置spring boot的注解，进行方法级别的缓存
-		// 使用：进行分割，可以很多显示出层级关系
-		// 这里其实就是new了一个KeyGenerator对象，只是这是lambda表达式的写法，我感觉很好用，大家感兴趣可以去了解下
-		return (target, method, params) -> {
-			StringBuilder sb = new StringBuilder();
-			sb.append(target.getClass().getName());
-			sb.append(":");
-			sb.append(method.getName());
-			for (Object obj : params) {
-				sb.append(":" + String.valueOf(obj));
-			}
-			String rsToUse = String.valueOf(sb);
-			lg.info("自动生成Redis Key -> [{}]", rsToUse);
-			return rsToUse;
-		};
-	}
+//	@Bean
+//	@Override
+//	public KeyGenerator keyGenerator() {
+//		// 设置自动key的生成规则，配置spring boot的注解，进行方法级别的缓存
+//		// 使用：进行分割，可以很多显示出层级关系
+//		// 这里其实就是new了一个KeyGenerator对象，只是这是lambda表达式的写法，我感觉很好用，大家感兴趣可以去了解下
+//		return (target, method, params) -> {
+//			StringBuilder sb = new StringBuilder();
+//			sb.append(target.getClass().getName());
+//			sb.append(":");
+//			sb.append(method.getName());
+//			for (Object obj : params) {
+//				sb.append(":" + String.valueOf(obj));
+//			}
+//			String rsToUse = String.valueOf(sb);
+//			lg.info("自动生成Redis Key -> [{}]", rsToUse);
+//			return rsToUse;
+//		};
+//	}
 
 
 	@Bean
@@ -91,76 +91,76 @@ public class RedisConfiguration extends CachingConfigurerSupport {
 		return redisTemplate;
 	}
 
-	@Override
-	@Bean
-	public CacheErrorHandler errorHandler() {
-		// 异常处理，当Redis发生异常时，打印日志，但是程序正常走
-		lg.info("初始化 -> [{}]", "Redis CacheErrorHandler");
-		CacheErrorHandler cacheErrorHandler = new CacheErrorHandler() {
-			@Override
-			public void handleCacheGetError(RuntimeException e, Cache cache, Object key) {
-				lg.error("Redis occur handleCacheGetError：key -> [{}]", key, e);
-			}
-
-			@Override
-			public void handleCachePutError(RuntimeException e, Cache cache, Object key, Object value) {
-				lg.error("Redis occur handleCachePutError：key -> [{}]；value -> [{}]", key, value, e);
-			}
-
-			@Override
-			public void handleCacheEvictError(RuntimeException e, Cache cache, Object key) {
-				lg.error("Redis occur handleCacheEvictError：key -> [{}]", key, e);
-			}
-
-			@Override
-			public void handleCacheClearError(RuntimeException e, Cache cache) {
-				lg.error("Redis occur handleCacheClearError：", e);
-			}
-		};
-		return cacheErrorHandler;
-	}
+//	@Override
+//	@Bean
+//	public CacheErrorHandler errorHandler() {
+//		// 异常处理，当Redis发生异常时，打印日志，但是程序正常走
+//		lg.info("初始化 -> [{}]", "Redis CacheErrorHandler");
+//		CacheErrorHandler cacheErrorHandler = new CacheErrorHandler() {
+//			@Override
+//			public void handleCacheGetError(RuntimeException e, Cache cache, Object key) {
+//				lg.error("Redis occur handleCacheGetError：key -> [{}]", key, e);
+//			}
+//
+//			@Override
+//			public void handleCachePutError(RuntimeException e, Cache cache, Object key, Object value) {
+//				lg.error("Redis occur handleCachePutError：key -> [{}]；value -> [{}]", key, value, e);
+//			}
+//
+//			@Override
+//			public void handleCacheEvictError(RuntimeException e, Cache cache, Object key) {
+//				lg.error("Redis occur handleCacheEvictError：key -> [{}]", key, e);
+//			}
+//
+//			@Override
+//			public void handleCacheClearError(RuntimeException e, Cache cache) {
+//				lg.error("Redis occur handleCacheClearError：", e);
+//			}
+//		};
+//		return cacheErrorHandler;
+//	}
 
 	/**
 	 * 此内部类就是把yml的配置数据，进行读取，创建JedisConnectionFactory和JedisPool，以供外部类初始化缓存管理器使用
 	 * 不了解的同学可以去看@ConfigurationProperties和@Value的作用
 	 *
 	 */
-	@Configuration
-	class DataJedisProperties {
-		@Value("${spring.redis.host}")
-		private String host;
-		@Value("${spring.redis.password}")
-		private String password;
-		@Value("${spring.redis.port}")
-		private int port;
-		@Value("${spring.redis.timeout}")
-		private int timeout;
-		@Value("${spring.redis.pool.max-idle}")
-		private int maxIdle;
-//		@Value("${spring.redis.pool.max-wait}")
-//		private long maxWaitMillis;
-
-		@Bean
-		JedisConnectionFactory jedisConnectionFactory() {
-			lg.info("Create JedisConnectionFactory successful");
-			JedisConnectionFactory factory = new JedisConnectionFactory();
-			factory.setHostName(host);
-			factory.setPort(port);
-			factory.setTimeout(timeout);
-			factory.setPassword(password);
-			return factory;
-		}
-
-		@Bean
-		public JedisPool redisPoolFactory() {
-			lg.info("JedisPool init successful，host -> [{}]；port -> [{}]", host, port);
-			JedisPoolConfig jedisPoolConfig = new JedisPoolConfig();
-			jedisPoolConfig.setMaxIdle(maxIdle);
-			//jedisPoolConfig.setMaxWaitMillis(maxWaitMillis);
-
-			JedisPool jedisPool = new JedisPool(jedisPoolConfig, host, port, timeout, password);
-			return jedisPool;
-		}
-	}
+//	@Configuration
+//	class DataJedisProperties {
+//		@Value("${spring.redis.host}")
+//		private String host;
+//		@Value("${spring.redis.password}")
+//		private String password;
+//		@Value("${spring.redis.port}")
+//		private int port;
+//		@Value("${spring.redis.timeout}")
+//		private int timeout;
+//		@Value("${spring.redis.pool.max-idle}")
+//		private int maxIdle;
+////		@Value("${spring.redis.pool.max-wait}")
+////		private long maxWaitMillis;
+//
+//		@Bean
+//		JedisConnectionFactory jedisConnectionFactory() {
+//			lg.info("Create JedisConnectionFactory successful");
+//			JedisConnectionFactory factory = new JedisConnectionFactory();
+//			factory.setHostName(host);
+//			factory.setPort(port);
+//			factory.setTimeout(timeout);
+//			factory.setPassword(password);
+//			return factory;
+//		}
+//
+//		@Bean
+//		public JedisPool redisPoolFactory() {
+//			lg.info("JedisPool init successful，host -> [{}]；port -> [{}]", host, port);
+//			JedisPoolConfig jedisPoolConfig = new JedisPoolConfig();
+//			jedisPoolConfig.setMaxIdle(maxIdle);
+//			//jedisPoolConfig.setMaxWaitMillis(maxWaitMillis);
+//
+//			JedisPool jedisPool = new JedisPool(jedisPoolConfig, host, port, timeout, password);
+//			return jedisPool;
+//		}
+//	}
 
 }

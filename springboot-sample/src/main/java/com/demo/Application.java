@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @SpringBootApplication
-@MapperScan("com.test.mapper")
+@MapperScan("com.demo.mapper")
 public class Application {
     @Value("${book.author}")
     private String author;
