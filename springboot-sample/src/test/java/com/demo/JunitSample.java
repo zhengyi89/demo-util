@@ -1,4 +1,4 @@
-package com.demo.junit;
+package com.demo;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.junit.*;
@@ -13,7 +13,7 @@ import static org.junit.Assert.assertEquals;
  * @Description: ${todo}
  * @date 18/7/12下午8:15
  */
-public class TestMain {
+public class JunitSample {
 
     @Before
     public void before() {

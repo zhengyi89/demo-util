@@ -1,4 +1,4 @@
-package com.demo.trans;
+package com.demo.math;
 
 /**
  * 进制转换
