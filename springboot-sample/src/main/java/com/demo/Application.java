@@ -1,5 +1,7 @@
 package com.demo;
 
+import com.demo.controller.TestController;
+import com.demo.spring.ApplicationContextUtil;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
@@ -28,6 +30,7 @@ public class Application {
 //		SpringApplication springApplication = new SpringApplication(Application.class);
 //		springApplication.run(args);
         SpringApplication.run(Application.class, args);
+
     }
 
 }
