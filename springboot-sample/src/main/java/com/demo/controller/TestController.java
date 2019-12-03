@@ -8,6 +8,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
@@ -24,12 +25,27 @@ import java.util.List;
 public class TestController {
     private final static Logger logger = LoggerFactory.getLogger(TestController.class);
 
+    @Value("${book.author}")
+    private String author;
+    @Value("${book.name}")
+    private String name;
+
+    @RequestMapping("/index")
+    @ResponseBody
+    String index() {
+        return "book name:" + name + "and author is " + author;
+    }
+
     @GetMapping(value = "/users")
     public PageInfo<User> getUsers() {
         PageHelper.startPage(1, 10);
         List<User> users = null;
         PageInfo<User> pageInfo = new PageInfo<User>(users);
         return pageInfo;
+    }
+
+    public String test(String s) {
+        return "hello " + s;
     }
 
 
