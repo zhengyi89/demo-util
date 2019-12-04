@@ -1,4 +1,5 @@
 package com.demo.netty;
+
 import org.jboss.netty.bootstrap.ClientBootstrap;
 import org.jboss.netty.channel.ChannelFactory;
 import org.jboss.netty.channel.ChannelPipeline;
@@ -26,16 +27,17 @@ public class TimeClient {
                 Executors.newCachedThreadPool());
         ClientBootstrap bootstrap = new ClientBootstrap(factory);
         bootstrap.setPipelineFactory(new ChannelPipelineFactory() {
+            @Override
             public ChannelPipeline getPipeline() {
                 ChannelPipeline pipeline = Channels.pipeline();
-                pipeline.addLast("encode",new StringEncoder());
-                pipeline.addLast("decode",new StringDecoder());
-                pipeline.addLast("handler",new TimeClientHandler());
+                pipeline.addLast("encode", new StringEncoder());
+                pipeline.addLast("decode", new StringDecoder());
+                pipeline.addLast("handler", new TimeClientHandler());
                 return pipeline;
             }
         });
-        bootstrap.setOption("tcpNoDelay" , true);
+        bootstrap.setOption("tcpNoDelay", true);
         bootstrap.setOption("keepAlive", true);
-        bootstrap.connect (new InetSocketAddress("127.0.0.1", 8080));
+        bootstrap.connect(new InetSocketAddress("127.0.0.1", 8080));
     }
 }

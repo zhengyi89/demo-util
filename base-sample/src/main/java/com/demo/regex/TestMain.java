@@ -63,8 +63,8 @@ public class TestMain {
     public void test() {
         String s = "  private str1 aa_bb;".trim();
         String s1 = "private str aabb;".trim();
-        Pattern p = Pattern.compile("^private (\\w+) (\\w+)_(\\w+);$");
-        Matcher m = p.matcher(s1);
+        Pattern p3 = Pattern.compile("^private (\\w+) (\\w+)_(\\w+);$");
+        Matcher m = p3.matcher(s1);
         boolean needReDo = true;
 
 

@@ -14,6 +14,7 @@ public class CountDownLatchTest {
     public static void testWaitThread() {
         final CountDownLatch latch = new CountDownLatch(2);
         new Thread() {
+            @Override
             public void run() {
                 try {
                     System.out.println("子线程" + Thread.currentThread().getName() + "正在执行");
@@ -31,6 +32,7 @@ public class CountDownLatchTest {
         }.start();
 
         new Thread() {
+            @Override
             public void run() {
                 try {
                     System.out.println("子线程" + Thread.currentThread().getName() + "正在执行");

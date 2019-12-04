@@ -61,6 +61,7 @@ class MyPanel extends JPanel {
         this.height = height;
     }
 
+    @Override
     public void paint(Graphics g) {
         try {
             System.out.println("begin draw"+x+y);

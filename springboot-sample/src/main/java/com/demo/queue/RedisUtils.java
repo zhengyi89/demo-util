@@ -37,10 +37,13 @@ public class RedisUtils {
     * @return
     */
    public static RedisUtils getInstance(){
-      if(redisUtils==null) 
+      if(redisUtils==null) {
          synchronized (RedisUtils.class) {
-            if(redisUtils==null) redisUtils=new RedisUtils();
+            if(redisUtils==null) {
+               redisUtils=new RedisUtils();
+            }
          }
+      }
       return redisUtils;
    }
    

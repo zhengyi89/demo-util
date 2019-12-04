@@ -21,22 +21,23 @@ import java.util.concurrent.Executors;
  * To change this template use File | Settings | File Templates.
  */
 public class DiscardServer {
-	public static void main(String[] args) throws Exception {
-		ChannelFactory factory = new NioServerSocketChannelFactory(
-				Executors.newCachedThreadPool(),
-				Executors.newCachedThreadPool());
-		ServerBootstrap bootstrap = new ServerBootstrap (factory);
-		bootstrap.setPipelineFactory(new ChannelPipelineFactory() {
-			public ChannelPipeline getPipeline() {
-				ChannelPipeline pipeline = Channels.pipeline();
-				pipeline.addLast("encode",new StringEncoder());
-				pipeline.addLast("decode",new StringDecoder());
-				pipeline.addLast("handler",new DiscardServerHandler());
-				return pipeline;
-			}
-		});
-		bootstrap.setOption("child.tcpNoDelay", true);
-		bootstrap.setOption("child.keepAlive", true);
-		bootstrap.bind(new InetSocketAddress(8080));
-	}
+    public static void main(String[] args) throws Exception {
+        ChannelFactory factory = new NioServerSocketChannelFactory(
+                Executors.newCachedThreadPool(),
+                Executors.newCachedThreadPool());
+        ServerBootstrap bootstrap = new ServerBootstrap(factory);
+        bootstrap.setPipelineFactory(new ChannelPipelineFactory() {
+            @Override
+            public ChannelPipeline getPipeline() {
+                ChannelPipeline pipeline = Channels.pipeline();
+                pipeline.addLast("encode", new StringEncoder());
+                pipeline.addLast("decode", new StringDecoder());
+                pipeline.addLast("handler", new DiscardServerHandler());
+                return pipeline;
+            }
+        });
+        bootstrap.setOption("child.tcpNoDelay", true);
+        bootstrap.setOption("child.keepAlive", true);
+        bootstrap.bind(new InetSocketAddress(8080));
+    }
 }

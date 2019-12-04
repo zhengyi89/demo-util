@@ -20,11 +20,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import java.io.IOException;
 
 /**
@@ -84,7 +82,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             }
         };
     }
+
     @Bean
+    @Override
     public UserDetailsService userDetailsService() {    //用户登录实现
         return new UserDetailsService() {
             @Autowired
@@ -93,7 +93,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             @Override
             public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
                 UserInfo user = userInfoService.findByUsername(s);
-                if (user == null) throw new UsernameNotFoundException("Username " + s + " not found");
+                if (user == null) {
+                    throw new UsernameNotFoundException("Username " + s + " not found");
+                }
                 return new SecurityUser(user);
             }
         };

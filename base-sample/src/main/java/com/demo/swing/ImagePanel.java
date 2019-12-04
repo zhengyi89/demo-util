@@ -69,14 +69,13 @@ public class ImagePanel extends JPanel {
 
     @Override
     public void paint(Graphics g) {
-        System.out.println("----------paint");
-        if (img != null)
+        if (img != null){
             g.drawImage(img, x, y, width, height, this);
-        else
+        }
+        else{
             g.clearRect(0, 0, getSize().width, getSize().height);
-
+        }
     }
-
 
     public static void main(String[] args) {
         JFrame j = new JFrame();
