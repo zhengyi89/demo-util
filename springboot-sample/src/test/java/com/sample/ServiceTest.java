@@ -39,7 +39,7 @@ public class ServiceTest {
 
 	@Test
 	public void selectUserByIdTest() {
-		UserInfo user = userInfoService.selectById(1);
+		UserInfo user = userInfoService.selectById(1L);
 		System.out.println("------" + JSON.toJSONString(user));
 	}
 

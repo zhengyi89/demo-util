@@ -13,7 +13,7 @@ public class LogInfoServiceImpl implements LogInfoService {
     private LogInfoMapper logInfoMapper;
 
     @Override
-    public LogInfo selectById(Integer id) {
+    public LogInfo selectById(Long id) {
         return logInfoMapper.selectById(id);
     }
 

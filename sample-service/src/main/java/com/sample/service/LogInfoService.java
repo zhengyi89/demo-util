@@ -4,7 +4,7 @@ import com.sample.model.LogInfo;
 
 public interface LogInfoService {
 
-    LogInfo selectById(Integer id);
+    LogInfo selectById(Long id);
 
     void insert(LogInfo info);
 }

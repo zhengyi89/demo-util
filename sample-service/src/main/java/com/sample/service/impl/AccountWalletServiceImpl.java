@@ -19,7 +19,7 @@ public class AccountWalletServiceImpl implements AccountWalletService {
 
     @Override
     public int updateAccountWallet(AccountWallet record) {
-        return accountWalletMapper.updateAccountWallet(record);
+        return accountWalletMapper.update(record);
     }
 
 }

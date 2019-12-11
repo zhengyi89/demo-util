@@ -22,7 +22,7 @@ public class UserInfoServiceImpl implements UserInfoService {
 
     @Override
     @Cach(bussName = BUSS_USER, key = "#userId", needLog = true)
-    public UserInfo selectById(Integer userId) {
+    public UserInfo selectById(Long userId) {
         // 3.缓存没有数据，从数据库查询
         UserInfo user = userInfoMapper.selectById(userId);
         logger.info("从数据库查询到:{}", JSON.toJSONString(user));
@@ -36,7 +36,9 @@ public class UserInfoServiceImpl implements UserInfoService {
 
     @Override
     public UserInfo findByUsername(String s) {
-        List<UserInfo> userList = userInfoMapper.findList();
+        UserInfo userInfo = new UserInfo();
+        userInfo.setUsername(s);
+        List<UserInfo> userList = userInfoMapper.findList(userInfo);
         return userList == null ? null : userList.get(0);
     }
 }
