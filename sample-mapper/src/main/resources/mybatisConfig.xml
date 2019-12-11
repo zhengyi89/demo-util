@@ -22,7 +22,7 @@
 	</settings>
 	<!-- 实体类别名 -->
 	<typeAliases>
-		<package name="com.demo.model" />
+		<package name="com.sample.model" />
 	</typeAliases>
 
 	<!-- 映射文件 -->
