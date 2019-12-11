@@ -10,9 +10,9 @@ spring:
     datasource:
         driverClassName: com.mysql.jdbc.Driver
         type: com.alibaba.druid.pool.DruidDataSource
-        url: jdbc:mysql://10.1.49.8:3306/test?useUnicode=true&characterEncoding=utf8&autoReconnect=true&allowMultiQueries=true
-        username: ctp
-        password: 1qaz#EDC
+        url: jdbc:mysql://mysql.zbjdl.net:3306/sample?useUnicode=true&characterEncoding=utf8&autoReconnect=true&allowMultiQueries=true
+        username: root
+        password: wK=QwJmR<592@zyj
         # 配置监控统计拦截的filters，去掉后监控界面sql无法统计
         filters: stat,slf4j
         # 初始化大小，最小，最大
@@ -41,7 +41,7 @@ spring:
 
 # REDIS (RedisProperties)
     redis:
-        host: redis.jnz.in
+        host: redis.zbjdl.net
         port: 6379
         password: 
         timeout: 1000

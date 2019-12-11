@@ -52,39 +52,39 @@
 		"${PID:-}", "thread": "%thread", "class": "%logger{40}", "rest": "%message"
 		} </pattern> </pattern> </providers> </encoder> </appender> -->
 
-	<appender name="logstash"
-			  class="net.logstash.logback.appender.LogstashTcpSocketAppender">
-		<!-- <destination>local:9250</destination> -->
-		<destination>localhost:9250</destination>
-		<encoder
-				class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
-			<providers>
-				<timestamp>
-					<timeZone>UTC</timeZone>
-				</timestamp>
-				<pattern>
-					<pattern>
-						{
-						"severity": "%level",
-						"com.demo.service": "${springAppName:-}",
-						"trace": "%X{X-                                                              -TraceId:-}",
-						"span": "%X{X-B3-SpanId:-}",
-						"exportable": "%X{X-Span-Export:-}",
-						"pid": "${PID:-}",
-						"thread": "%thread",
-						"class": "%logger{40}",
-						"rest": "%message"
-						}
-					</pattern>
-				</pattern>
-			</providers>
-		</encoder>
-	</appender>
+<!--	<appender name="logstash"-->
+<!--			  class="net.logstash.logback.appender.LogstashTcpSocketAppender">-->
+<!--		&lt;!&ndash; <destination>local:9250</destination> &ndash;&gt;-->
+<!--		<destination>localhost:9250</destination>-->
+<!--		<encoder-->
+<!--				class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">-->
+<!--			<providers>-->
+<!--				<timestamp>-->
+<!--					<timeZone>UTC</timeZone>-->
+<!--				</timestamp>-->
+<!--				<pattern>-->
+<!--					<pattern>-->
+<!--						{-->
+<!--						"severity": "%level",-->
+<!--						"com.demo.service": "${springAppName:-}",-->
+<!--						"trace": "%X{X-                                                              -TraceId:-}",-->
+<!--						"span": "%X{X-B3-SpanId:-}",-->
+<!--						"exportable": "%X{X-Span-Export:-}",-->
+<!--						"pid": "${PID:-}",-->
+<!--						"thread": "%thread",-->
+<!--						"class": "%logger{40}",-->
+<!--						"rest": "%message"-->
+<!--						}-->
+<!--					</pattern>-->
+<!--				</pattern>-->
+<!--			</providers>-->
+<!--		</encoder>-->
+<!--	</appender>-->
 
 
 	<root level="INFO">
 		<appender-ref ref="STDOUT" />
 		<appender-ref ref="logFile" />
-		<appender-ref ref="logstash"/> 
+<!--		<appender-ref ref="logstash"/> -->
 	</root>
 </configuration>

@@ -3,24 +3,23 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>demo-parent</artifactId>
-        <groupId>com.demo</groupId>
-        <version>0.0.1-SNAPSHOT</version>
+        <artifactId>sample-parent</artifactId>
+        <groupId>com.sample</groupId>
+        <version>1.0.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-
-    <artifactId>demo-service</artifactId>
+    <artifactId>sample-service</artifactId>
 
     <dependencies>
         <dependency>
-            <groupId>com.demo</groupId>
-            <artifactId>demo-mapper</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <groupId>com.sample</groupId>
+            <artifactId>sample-mapper</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
         </dependency>
         <dependency>
-            <groupId>com.demo</groupId>
+            <groupId>com.sample</groupId>
             <artifactId>dynamic-proxy-sample</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <version>1.0.0-SNAPSHOT</version>
         </dependency>
     </dependencies>
 
