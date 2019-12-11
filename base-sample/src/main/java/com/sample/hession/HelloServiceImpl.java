@@ -11,9 +11,6 @@ import org.springframework.stereotype.Service;
 @Service("sayHelloHessian")
 public class HelloServiceImpl extends HessianServlet implements HelloService {
 
-    /**
-     *
-     */
     private static final long serialVersionUID = -3537274030227675984L;
 
     @Override

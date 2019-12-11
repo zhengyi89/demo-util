@@ -1,6 +1,4 @@
 package com.sample.hession;
-
-
 import com.sample.model.UserInfo;
 
 /**
@@ -9,8 +7,8 @@ import com.sample.model.UserInfo;
  */
 public interface HelloService {
 
-    public String helloWorld(String message);
+    String helloWorld(String message);
 
-    public UserInfo getMyInfo(UserInfo user);
+    UserInfo getMyInfo(UserInfo user);
 
 }
