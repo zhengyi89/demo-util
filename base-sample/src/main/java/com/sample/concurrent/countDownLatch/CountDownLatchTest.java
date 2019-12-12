@@ -12,6 +12,7 @@ public class CountDownLatchTest {
      * 1、模拟所有子线程都执行完成后再执行主线程 countdownLatch计数，模拟子线程执行完成之后再执行主线程 这个也可以用future来实现
      */
     public static void testWaitThread() {
+
         final CountDownLatch latch = new CountDownLatch(2);
         new Thread() {
             @Override
