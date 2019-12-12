@@ -20,7 +20,6 @@ import java.util.Map;
  * @Date: 2019/10/28 16:44
  */
 public class ConvertCenter {
-
     @Test
     public void bean2MapTest() {
         UserInfo userInfo = new UserInfo();
