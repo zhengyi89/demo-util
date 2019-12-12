@@ -5,6 +5,7 @@ package com.sample.concurrent.ReentrantLock;
  * @Date: 2019/10/18 14:01
  */
 public class MyThread extends Thread {
+
     private MyTask myTask;
 
     public MyThread(MyTask myTask) {
