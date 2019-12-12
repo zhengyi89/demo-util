@@ -38,9 +38,12 @@ public class WalletController {
         String result = "";
 
         try {
-            String openId = request.getParameter("openId") == null ? null : request.getParameter("openId").trim(); // 用户唯一编号
-            String openType = request.getParameter("openType") == null ? null : request.getParameter("openType").trim(); // 1:代表增加，2：代表减少
-            String amount = request.getParameter("amount") == null ? null : request.getParameter("amount").trim(); // 金额
+            // 用户唯一编号
+            String openId = request.getParameter("openId") == null ? null : request.getParameter("openId").trim();
+            // 1:代表增加，2：代表减少
+            String openType = request.getParameter("openType") == null ? null : request.getParameter("openType").trim();
+            // 金额
+            String amount = request.getParameter("amount") == null ? null : request.getParameter("amount").trim();
 
             if (StringUtils.isEmpty(openId)) {
                 return "openId is null";
