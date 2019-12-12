@@ -50,4 +50,4 @@ spring:
             max-idle: 8
             min-idle: 8
 mybatis:
-    config: classpath:mybatisConfig.xml
+    config-location: classpath:mybatisConfig.xml

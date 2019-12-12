@@ -32,13 +32,13 @@ public class CachAspect {
      * @return
      * @throws Throwable
      */
-    @Around("execution( * com.sample..*.*(..))")
-    public Object doAround(ProceedingJoinPoint joinPoint) throws Throwable {
-        System.out.println("do before ...");
-        Object rst = joinPoint.proceed();
-        System.out.println("do end ...");
-        return rst;
-    }
+//    @Around("execution( * com.sample..*.*(..))")
+//    public Object doAround(ProceedingJoinPoint joinPoint) throws Throwable {
+//        System.out.println("do before ...");
+//        Object rst = joinPoint.proceed();
+//        System.out.println("do end ...");
+//        return rst;
+//    }
 
     /**
      * 拦截加了@cach的

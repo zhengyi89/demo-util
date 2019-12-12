@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
  * @Author: zhengyi
  * @Date: 2019/12/3 11:43
  */
-@Component
+//@Component
 public class SmartLifecycleSample implements SmartLifecycle {
 
     private boolean isRunning = false;

@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
  * @Author: zhengyi
  * @Date: 2019/10/29 11:11
  */
-@Component
+//@Component
 public class InitializingBeanSample implements InitializingBean {
     @Override
     public void afterPropertiesSet() throws Exception {

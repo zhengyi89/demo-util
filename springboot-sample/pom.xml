@@ -17,8 +17,6 @@
             <artifactId>sample-service</artifactId>
             <version>1.0.0-SNAPSHOT</version>
         </dependency>
-
-
         <dependency>
             <groupId>com.github.pagehelper</groupId>
             <artifactId>pagehelper</artifactId>

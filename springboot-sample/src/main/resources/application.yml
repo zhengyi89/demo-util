@@ -8,7 +8,7 @@ spring:
         content-type: text/html
         charset: UTF-8
     datasource:
-        driverClassName: com.mysql.jdbc.Driver
+        driver-class-name: com.mysql.cj.jdbc.Driver
         type: com.alibaba.druid.pool.DruidDataSource
         url: jdbc:mysql://mysql.zbjdl.net:3306/sample?useUnicode=true&characterEncoding=utf8&autoReconnect=true&allowMultiQueries=true
         username: root
@@ -43,11 +43,11 @@ spring:
     redis:
         host: redis.zbjdl.net
         port: 6379
-        password: 
+        password: rdspwd
         timeout: 1000
         pool:
-            max-active: -1
-            max-idle: 8
-            min-idle: 8
+#            max-active: -1
+#            max-idle: 8
+#            min-idle: 8
 mybatis:
     config: classpath:mybatisConfig.xml
