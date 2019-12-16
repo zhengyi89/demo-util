@@ -1,0 +1,14 @@
+@startuml
+
+class Client
+interface Target
+class Proxy
+class RealProxy
+
+Client -> Target
+Target <|-- Proxy
+Target <|-- RealProxy
+
+RealProxy<--Proxy
+
+@enduml
