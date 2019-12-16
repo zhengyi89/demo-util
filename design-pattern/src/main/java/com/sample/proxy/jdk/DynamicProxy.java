@@ -4,7 +4,7 @@ import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 
 /**
- * 动态代理
+ * 基于jdk实现动态代理
  *
  * @author zhengy
  * @date 18/7/17上午11:06

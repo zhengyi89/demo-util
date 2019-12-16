@@ -12,14 +12,14 @@ import java.lang.reflect.Proxy;
 
 public class Client {
 
-	/**
-	 * 静态代理测试
-	 */
-	@Test
-	public void proxyTest() {
-		ProxySubject subject = new ProxySubject(new RealSubject());
-		subject.visit();
-	}
+    /**
+     * 静态代理测试
+     */
+    @Test
+    public void proxyTest() {
+        ProxySubject subject = new ProxySubject(new RealSubject());
+        subject.visit();
+    }
 
     /**
      * 动态代理测试
@@ -33,10 +33,10 @@ public class Client {
         subject.visit();
     }
 
-	/**
-	 * cglib动态代理
-	 */
-	@Test
+    /**
+     * cglib动态代理
+     */
+    @Test
     public void cglibProxyTest() {
         CglibProxy cglib = new CglibProxy();
         CglibRealSubject subject = (CglibRealSubject) cglib.getInstance(new CglibRealSubject());
