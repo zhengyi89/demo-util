@@ -1,0 +1,21 @@
+@startuml
+
+class Client
+class Adaptee{
+    specialRequest();
+}
+note right:需适配的类
+interface Target{
+    request();
+}
+note top: 客户端使用的接口
+class Adatper{
+    request();
+}
+note left:通过内部包装Adaptee对象，\n把原接口转换成目标接口
+Client -right-> Target
+Adatper -up-|> Target
+Adatper -right->Adaptee
+
+
+@enduml
