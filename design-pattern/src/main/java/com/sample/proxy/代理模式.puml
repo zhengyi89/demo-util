@@ -1,14 +1,17 @@
 @startuml
 
 class Client
-interface Target
+interface Subject
+note top : 抽象主题
 class Proxy
-class RealProxy
+note left:代理类
+class RealSubject
+note right:真实主题
 
-Client -> Target
-Target <|-- Proxy
-Target <|-- RealProxy
+Client -> Subject
+Subject <|-- Proxy
+Subject <|-- RealSubject
 
-RealProxy<--Proxy
+RealSubject<--Proxy
 
 @enduml
