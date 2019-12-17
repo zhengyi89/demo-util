@@ -17,13 +17,18 @@ import static org.junit.Assert.assertTrue;
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class SpringApplicationSample {
+public class SpringApplicationTest {
+
+    @Test
+    public void test() {
+        ApplicationContext applicationContext = ApplicationContextUtil.getApplicationContext();
+    }
 
     /**
      * 从spring容器中获取对象并调用方法
      */
     @Test
-    public void test() {
+    public void methodInvokeTest() {
         TestController testController = ApplicationContextUtil.getBean(TestController.class);
         String s = testController.test("lxy");
         assertEquals("hello lxy", s);
@@ -43,6 +48,4 @@ public class SpringApplicationSample {
             System.out.println("---------------===" + beanDefinitionName);
         }
     }
-
-
 }
