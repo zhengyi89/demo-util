@@ -6,8 +6,8 @@ package com.sample.spring.lifecycle;
  * @Author: zhengyi
  * @Date: 2019/12/17 16:15
  */
-public class LifeCycleInfo {
-    public LifeCycleInfo() {
+public class LifeCycleModel {
+    public LifeCycleModel() {
         System.out.println("lifecycle construct ");
     }
 

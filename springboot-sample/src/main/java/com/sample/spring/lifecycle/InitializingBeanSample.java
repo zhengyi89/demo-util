@@ -23,6 +23,6 @@ public class InitializingBeanSample implements InitializingBean, DisposableBean 
 
     @Override
     public void destroy() throws Exception {
-        System.out.println("bean destory ...");
+        System.out.println("InitializingBean destory ...");
     }
 }

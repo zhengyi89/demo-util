@@ -15,7 +15,7 @@ public class LifeCycleConfiguration {
 
     @Scope(SCOPE_PROTOTYPE)
     @Bean(initMethod = "init", destroyMethod = "destory")
-    public LifeCycleInfo lifeCycleInfo() {
-        return new LifeCycleInfo();
+    public LifeCycleModel lifeCycleInfo() {
+        return new LifeCycleModel();
     }
 }
