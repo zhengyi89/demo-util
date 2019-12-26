@@ -1,0 +1,13 @@
+package com.pandorasoft.precogs.templates;
+import com.sample.drools.pojo.RuleOutput;
+import com.sample.drools.pojo.FactorContext;
+global RuleOutput ruleOutput;
+
+rule "rule-age-1"
+when
+    context:FactorContext(age<="21" || age>="45")
+then
+    System.out.println("rule.name:" + kcontext.getRule().getName());
+    ruleOutput.setDeny(true);
+end
+

@@ -1,0 +1,12 @@
+template header
+ageStart
+ageEnd
+template "rule-age-template"
+rule "rule-age-1"
+when
+    context:BasicInfoContext(age>="@{ageStart}" , age<="@{ageEnd}")
+then
+    System.out.println("rule.name:" + kcontext.getRule().getName());
+    ruleOutput.addResult("年龄限制","rule-age-1","DENY");
+end
+end template

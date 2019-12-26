@@ -7,6 +7,7 @@ package com.sample.spring.lifecycle;
  * @Date: 2019/12/17 16:15
  */
 public class LifeCycleModel {
+
     public LifeCycleModel() {
         System.out.println("lifecycle construct ");
     }
