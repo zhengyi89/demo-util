@@ -52,7 +52,7 @@ public class DroolsSample {
     }
 
     /**
-     * 根据drools模板生成脚本
+     * 规则编译(KnowledgeBuilder)
      */
     @Test
     public void testGetDrlFromTemplate() {
@@ -97,7 +97,7 @@ public class DroolsSample {
             kSession.insert(context);
 
             final RuleOutput ruleOutput = new RuleOutput();
-            // 获取
+            // 获取全局变量
             kSession.setGlobal("ruleOutput", ruleOutput);
             // 执行规则
             int count = kSession.fireAllRules();
