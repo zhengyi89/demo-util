@@ -3,6 +3,8 @@ package com.sample.util;
 import java.util.Arrays;
 
 /**
+ * 银行卡校验
+ *
  * @Author: zhengyi
  * @Date: 2019/9/9 11:48
  */

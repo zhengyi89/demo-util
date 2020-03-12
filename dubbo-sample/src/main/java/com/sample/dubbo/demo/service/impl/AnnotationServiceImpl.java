@@ -1,4 +1,4 @@
-package com.sample.dubbo.demo.configuration;
+package com.sample.dubbo.demo.service.impl;
 
 import com.alibaba.dubbo.config.annotation.Service;
 import com.sample.dubbo.demo.service.AnnotationService;

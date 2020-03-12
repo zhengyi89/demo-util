@@ -24,7 +24,7 @@ public class SimpleSerial {
 
 	public static void serialize(File file) throws FileNotFoundException, IOException {
 		ObjectOutputStream oout = new ObjectOutputStream(new FileOutputStream(file));
-		Person person = new Person("John", 101, Gender.MALE);
+		Person person = new Person("John", 101, Gender.FEMALE);
 		oout.writeObject(person);
 		oout.close();
 	}

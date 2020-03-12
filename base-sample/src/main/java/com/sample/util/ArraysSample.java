@@ -13,6 +13,7 @@ public class ArraysSample {
         List list = Arrays.asList(str);
 //        list.add("yangguanbao");
         str[0] = "gujin";
+        list.add(11);
         System.out.println(list);
 
     }
