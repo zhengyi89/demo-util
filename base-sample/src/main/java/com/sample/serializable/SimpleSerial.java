@@ -15,6 +15,7 @@ import java.io.ObjectOutputStream;
  *
  */
 public class SimpleSerial {
+
 	public static void main(String[] args) throws Exception {
 		File file = new File("d:\\person.out");
 		// serialize(file);
