@@ -127,7 +127,33 @@ public class Luhn {
     }
 
 
+    /**
+     * 从不含校验位的银行卡卡号采用 Luhm 校验算法获得校验位
+     * * @param nonCheckCodeCardId
+     * * @return
+     */
+    public static char getBankCardCheckCode(String nonCheckCodeCardId) {
+        if (nonCheckCodeCardId == null || nonCheckCodeCardId.trim().length() == 0 || !nonCheckCodeCardId.matches("\\d+")) {
+            //如果传的不是数据返回N
+            return 'N';
+        }
+        char[] chs = nonCheckCodeCardId.trim().toCharArray();
+        int luhmSum = 0;
+        for (int i = chs.length - 1, j = 0; i >= 0; i--, j++) {
+            int k = chs[i] - '0';
+            if (j % 2 == 0) {
+                k *= 2;
+                k = k / 10 + k % 10;
+            }
+            luhmSum += k;
+        }
+        return (luhmSum % 10 == 0) ? '0' : (char) ((10 - luhmSum % 10) + '0');
+    }
+
+
     public static void main(String[] args) {
-        System.out.println(matchLuhn("6228481009228646674"));
+//        System.out.println(matchLuhn("6212263400014796659"));
+//        System.out.println(getBankCardCheckCode("6212263400014796659"));
+        System.out.println(String.format("%.2f", String.valueOf(11.22222)));
     }
 }
