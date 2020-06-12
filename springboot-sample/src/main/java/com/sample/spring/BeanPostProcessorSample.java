@@ -20,7 +20,7 @@ public class BeanPostProcessorSample implements BeanPostProcessor, Ordered {
      */
     @Override
     public Object postProcessBeforeInitialization(Object bean, String beanName) {
-        System.out.println("postProcess Before," + beanName + "--");
+//        System.out.println("postProcess Before," + beanName + "--");
         return bean;
     }
 
@@ -33,7 +33,7 @@ public class BeanPostProcessorSample implements BeanPostProcessor, Ordered {
      */
     @Override
     public Object postProcessAfterInitialization(Object bean, String beanName) {
-        System.out.println("postProcess After," + beanName + "--");
+//        System.out.println("postProcess After," + beanName + "--");
         return bean;
     }
 
