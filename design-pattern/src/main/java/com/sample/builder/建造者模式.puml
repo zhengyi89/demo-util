@@ -1,0 +1,29 @@
+@startuml
+
+class Director{
+    +construct()
+}
+interface Builder{
+    +builderA():void
+    +builderB():void
+}
+class ConcreteBuilderA{
+    +builderA():void
+    +builderB():void
+
+    + Product product
+}
+class ConcreteBuilderB{
+    + Product product
+    +builderA():void
+    +builderB():void
+}
+class Product
+
+Director -> Builder
+Builder <|-- ConcreteBuilderA
+Builder <|-- ConcreteBuilderB
+
+Product<..ConcreteBuilderB
+
+@enduml
