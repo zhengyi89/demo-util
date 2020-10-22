@@ -9,13 +9,15 @@ package com.sample.thread;
 public class ThreadLocalSample {
     static class MyThread extends Thread {
         private static ThreadLocal<Integer> threadLocal = new ThreadLocal<>();
+        private static ThreadLocal<Integer> threadLocal1 = new ThreadLocal<>();
 
         @Override
         public void run() {
-            super.run();
             for (int i = 0; i < 3; i++) {
                 threadLocal.set(i);
                 System.out.println(getName() + " threadLocal.get() = " + threadLocal.get());
+                threadLocal1.set(i + 1);
+                System.out.println(getName() + " threadLocal1.get() = " + threadLocal1.get());
             }
         }
     }

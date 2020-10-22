@@ -4,6 +4,9 @@ import com.sample.ognl.model.Address;
 import com.sample.ognl.model.User;
 import org.apache.ibatis.ognl.Ognl;
 import org.apache.ibatis.ognl.OgnlException;
+import org.apache.ibatis.scripting.xmltags.DynamicContext;
+import org.apache.ibatis.scripting.xmltags.OgnlCache;
+import org.apache.ibatis.session.Configuration;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -91,6 +94,17 @@ public class OgnlSample {
         System.out.println(Ognl.getValue("getName()", context, user));
         Ognl.getValue("setName(#name)", context, user);
         System.out.println(Ognl.getValue("getName()", context, user));
+    }
+
+
+    @Test
+    public void testOgnl5() throws OgnlException {
+        Map map = new HashMap();
+        map.put("currentPeriod", 0);
+        DynamicContext context = new DynamicContext(new Configuration(),map);
+
+        Object value = OgnlCache.getValue("currentPeriod != null and currentPeriod != '' ", context);
+        System.out.println(value);
     }
 
 
