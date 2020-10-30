@@ -33,6 +33,7 @@ public class DroolsHelper {
 
         InputStream targetStream = new ByteArrayInputStream(template.getBytes());
         String drl = converter.compile(paramMaps, targetStream);
+        logger.info("drl script -----------------");
         logger.info(drl);
         return drl;
 

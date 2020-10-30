@@ -1,5 +1,5 @@
 dialect  "mvel"
-import com.sample.drools.Message
+import com.sample.drools.pojo.Message
 rule "helloworldDrools"
     when
         eval(true)

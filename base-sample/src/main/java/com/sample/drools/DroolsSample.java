@@ -40,11 +40,9 @@ public class DroolsSample {
     public void setUp() {
         List<String> fieldList = new ArrayList<String>();
         fieldList.add("age");
+//        fieldList.add("name");
         try {
             FactObjectFieldUtil.createField(fieldList);
-        } catch (NotFoundException e) {
-            e.printStackTrace();
-            fail();
         } catch (CannotCompileException e) {
             e.printStackTrace();
             fail();
@@ -60,11 +58,9 @@ public class DroolsSample {
         variableMap.put("ageStart", 20);
         variableMap.put("ageEnd", 40);
         try {
-            System.out.println(this.getClass().getResource("/drools/demoTemplate.drl"));
             InputStream inputStream = this.getClass().getResourceAsStream("/drools/demoTemplate.drl");
             String template = IOUtils.toString(inputStream);
-            String scriptTxt = DroolsHelper.getDrlFromTemplate(variableMap, template);
-            System.out.println(scriptTxt);
+            DroolsHelper.getDrlFromTemplate(variableMap, template);
         } catch (IOException e) {
             e.printStackTrace();
             fail();
@@ -87,7 +83,7 @@ public class DroolsSample {
             // 创建factor
             FactorVariableValue factorVariableValue = new FactorVariableValue();
             factorVariableValue.setFactorName("age");
-            factorVariableValue.setFactorValue("100");
+            factorVariableValue.setFactorValue("30");
             FactorContext context = new FactorContext();
             try {
                 FactObjectFieldUtil.setValue(context, factorVariableValue);
@@ -102,8 +98,8 @@ public class DroolsSample {
             // 执行规则
             int count = kSession.fireAllRules();
             logger.info("Fire " + count + " rule(s)!");
-
             logger.info("is deny:" + ruleOutput.isDeny());
+
             kSession.dispose();
         } catch (Throwable t) {
             t.printStackTrace();
@@ -113,17 +109,23 @@ public class DroolsSample {
     @Test
     public void scoreDroolsTest() {
         try {
-            System.out.println(this.getClass().getResource("/drools/score.drl"));
             InputStream inputStream = this.getClass().getResourceAsStream("/drools/score.drl");
             String scriptTxt = IOUtils.toString(inputStream);
             KieHelper helper = new KieHelper();
             helper.addContent(scriptTxt, ResourceType.DRL);
             KieSession kSession = helper.build().newKieSession();
 
-            Score s = new Score(99);
+            Score s = new Score(81);
             kSession.insert(s);
-            kSession.fireAllRules();
 
+            ScoreOutPut scoreOutPut = new ScoreOutPut();
+            kSession.setGlobal("output", scoreOutPut);
+            int count = kSession.fireAllRules();
+
+            logger.info("Fire " + count + " rule(s)!");
+            logger.info("score level:" + scoreOutPut.getScoreLevel());
+
+            kSession.dispose();
         } catch (Throwable t) {
             t.printStackTrace();
         }
