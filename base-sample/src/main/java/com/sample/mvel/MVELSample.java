@@ -1,5 +1,7 @@
 package com.sample.mvel;
 
+import com.sample.model.UserInfo;
+import org.junit.Test;
 import org.mvel2.MVEL;
 
 import java.util.HashMap;
@@ -13,16 +15,42 @@ import java.util.Map;
  */
 public class MVELSample {
 
-    public static void main(String[] args) {
+    /**
+     * 条件判断
+     */
+    @Test
+    public void test() {
+        String expression = "foobar > 99";
+        Map vars = new HashMap(1);
+        vars.put("foobar", 100);
+        Boolean result = (Boolean) MVEL.eval(expression, vars);
+        System.out.println("mvel result is :" + result);
+    }
+
+    /**
+     * 空判断
+     */
+    @Test
+    public void test1() {
+        String expression = "a == empty || b == empty";
         Map vars = new HashMap();
-        vars.put("foobar", new Integer(100));
+        vars.put("a", "aa");
+        vars.put("b", "");
+        Boolean result = (Boolean) MVEL.eval(expression, vars);
+        System.out.println("mvel result is :" + result);
+    }
 
-        Boolean result = (Boolean) MVEL.eval("foobar>99", vars);
-        if (result) {
-            System.out.println("It works!");
-        }
-
-
-
+    /**
+     * 设置对象属性
+     */
+    @Test
+    public void test2() {
+        UserInfo user = new UserInfo();
+        user.setUsername("1234");
+        String expression = "user.username = '123'";
+        Map<String, Object> paramMap = new HashMap<>(1);
+        paramMap.put("user", user);
+        Object object = MVEL.eval(expression, paramMap);
+        System.out.println("mvel result is :" + user.getUsername());
     }
 }
