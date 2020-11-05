@@ -1,4 +1,4 @@
-package com.sample.concurrent.ReentrantLock;
+package com.sample.util.concurrent.ReentrantLock;
 
 /**
  * @Author: zhengyi

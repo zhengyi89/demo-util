@@ -1,4 +1,4 @@
-package com.sample.concurrent.ReentrantLock;
+package com.sample.util.concurrent.ReentrantLock;
 
 import java.util.HashMap;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
