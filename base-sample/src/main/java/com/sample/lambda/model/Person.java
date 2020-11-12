@@ -1,4 +1,4 @@
-package com.sample.lambda;
+package com.sample.lambda.model;
 
 public class Person {
 
@@ -63,4 +63,7 @@ public class Person {
 		this.age = age;
 	}
 
+	public String getName() {
+		return this.firstName+"-"+this.getLastName();
+	}
 }
