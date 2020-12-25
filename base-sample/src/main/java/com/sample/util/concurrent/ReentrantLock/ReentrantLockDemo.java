@@ -49,4 +49,10 @@ public class ReentrantLockDemo {
         }
         Thread.sleep(5000);
     }
+
+
+    public static void main(String[] args) {
+        Thread thread = new Thread();
+        thread.start();
+    }
 }

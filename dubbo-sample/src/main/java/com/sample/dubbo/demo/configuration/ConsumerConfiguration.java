@@ -10,7 +10,7 @@ import org.springframework.context.annotation.PropertySource;
  * @Date: 2019/8/23 9:13
  */
 @Configuration
-@EnableDubbo(scanBasePackages = "com.test.dubbo.com.demo.action")
+@EnableDubbo(scanBasePackages = "com.sample.dubbo.demo.action")
 @PropertySource("classpath:/spring/dubbo-consumer.properties")
 @ComponentScan(value = {"com.sample.dubbo.demo"})
 public class ConsumerConfiguration {

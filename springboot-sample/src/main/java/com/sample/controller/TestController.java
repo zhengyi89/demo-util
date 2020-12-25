@@ -1,11 +1,14 @@
 package com.sample.controller;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.sample.anno.User;
 import com.sample.dto.BaseRespDto;
 import com.sample.dto.BindingResultDto;
+import com.sample.model.LogInfo;
+import org.apache.http.HttpRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,10 +34,15 @@ public class TestController {
     @Value("${book.name}")
     private String name;
 
-    @RequestMapping("/index")
+    @RequestMapping(value = "/index", method =RequestMethod.POST )
     @ResponseBody
-    String index() {
-        return "book name:" + name + "and author is " + author;
+    String index(@RequestBody LogInfo loginfo) {
+        return "success";
+    }
+
+    @RequestMapping(value = "/index1", method =RequestMethod.POST)
+    String index1(@RequestBody LogInfo loginfo) {
+        return "success";
     }
 
     @GetMapping(value = "/users")

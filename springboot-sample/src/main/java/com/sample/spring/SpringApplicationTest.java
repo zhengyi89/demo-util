@@ -22,6 +22,7 @@ public class SpringApplicationTest {
     @Test
     public void test() {
         ApplicationContext applicationContext = ApplicationContextUtil.getApplicationContext();
+        int i = 1/0;
     }
 
     /**
@@ -45,7 +46,7 @@ public class SpringApplicationTest {
         ApplicationContext applicationContext = ApplicationContextUtil.getApplicationContext();
         String[] beanDefinitionNames = applicationContext.getBeanDefinitionNames();
         for (String beanDefinitionName : beanDefinitionNames) {
-            System.out.println("---------------===" + beanDefinitionName);
+            System.out.println("---------------" + beanDefinitionName);
         }
     }
 }

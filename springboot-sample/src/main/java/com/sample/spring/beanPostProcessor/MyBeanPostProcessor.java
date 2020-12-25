@@ -1,4 +1,4 @@
-package com.sample.spring;
+package com.sample.spring.beanPostProcessor;
 
 import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.core.Ordered;
@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
  * @Date: 2019/12/18 9:36
  */
 @Component
-public class BeanPostProcessorSample implements BeanPostProcessor, Ordered {
+public class MyBeanPostProcessor implements BeanPostProcessor, Ordered {
 
     /**
      * 初始化容器后置处理器，实例化、依赖注入完毕，init-method之前调用
@@ -20,7 +20,10 @@ public class BeanPostProcessorSample implements BeanPostProcessor, Ordered {
      */
     @Override
     public Object postProcessBeforeInitialization(Object bean, String beanName) {
-//        System.out.println("postProcess Before," + beanName + "--");
+        if (bean instanceof User){
+            System.out.println("-------postProcess Before," + beanName );
+            ((User) bean).setBeanName("5 mvp");
+        }
         return bean;
     }
 
@@ -33,7 +36,10 @@ public class BeanPostProcessorSample implements BeanPostProcessor, Ordered {
      */
     @Override
     public Object postProcessAfterInitialization(Object bean, String beanName) {
-//        System.out.println("postProcess After," + beanName + "--");
+        if (bean instanceof User){
+            System.out.println("-------postProcess After," + beanName );
+            ((User) bean).setBeanName("6 mvp");
+        }
         return bean;
     }
 

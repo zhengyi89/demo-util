@@ -1,21 +1,30 @@
 package com.sample.dubbo;
 
 import com.caucho.hessian.client.HessianProxyFactory;
+import com.sample.dubbo.demo.service.AnnotationService;
+
+import java.net.MalformedURLException;
 
 public class TestMain {
 
-	public void invokeDubboService() {
-		String serviceUrl = "http://192.168.120.233:8081/weixin-web/soa/com.zbjdl.common.wx.service.WeixinService";
+    public static void invokeDubboService() {
+        String serviceUrl = "http://10.1.193.137:8080/annotation-provider/com.sample.dubbo.demo.service" +
+				".AnnotationService";
 
-		HessianProxyFactory factory = new HessianProxyFactory();
+        HessianProxyFactory factory = new HessianProxyFactory();
 
-		// WeixinService searchService = null;
-		// try {
-		// searchService = (WeixinService) factory.create(WeixinService.class,
-		// serviceUrl);
-		// } catch (MalformedURLException e) {
-		// e.printStackTrace();
-		// }
-		//
+        AnnotationService searchService = null;
+
+        try {
+            searchService = (AnnotationService) factory.create(AnnotationService.class,
+                    serviceUrl);
+			searchService.sayHello("zhagnyi");
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+    }
+
+	public static void main(String[] args) {
+		invokeDubboService();
 	}
 }
