@@ -18,8 +18,9 @@ import java.util.stream.Stream;
  *
  * @author zhengy
  */
-public class StreamTest {
-	private final static Logger logger = LoggerFactory.getLogger(StreamTest.class);
+public class StreamSample {
+    private final static Logger logger = LoggerFactory.getLogger(StreamSample.class);
+
     /**
      * 使用forEach方法来迭代输出列表
      */
@@ -84,7 +85,7 @@ public class StreamTest {
         javaProgrammers.stream().limit(3)
                 .forEach((p) -> System.out.printf("%s %s; ", p.getFirstName(), p.getLastName()));
 
-		System.out.println();
+        System.out.println();
         System.out.println("最前面的3个女性 Java programmers:");
         javaProgrammers.stream().filter(genderFilter).limit(3)
                 .forEach((p) -> System.out.printf("%s %s; ", p.getFirstName(), p.getLastName()));
