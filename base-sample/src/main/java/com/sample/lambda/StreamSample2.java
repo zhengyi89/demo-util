@@ -57,11 +57,6 @@ public class StreamSample2 {
         public Klass(int field) {
             this.field = field;
         }
-
-//        @Override
-//        public String toString() {
-//            return "field=" + field;
-//        }
     }
 
     @Data
