@@ -1,0 +1,50 @@
+@startuml
+
+
+class "goods(商品)" as goods{
+    String goods_code;
+    String goods_name;
+    String goods_category;
+    String status：状态 1-草稿 2-生效 3-待生效 4-失效;
+}
+note left:三大疾病保险\n海外旅行保险
+
+class "goods_plan(商品集合)" as goods_plan{
+    String goods_id;
+    String plan_code;
+    String goods_plan_name;
+    String package_id;
+    String insured_period：保障期限;
+    String status：状态 1-草稿 2-生效 3-待生效 4-失效;
+}
+note left:无疾病死亡计划\nY购物家电维修保险5年
+
+goods_plan-up->goods
+
+
+class "package(产品组合)" as package{
+    String code;
+    String name;
+    String status;
+    String policy_scenario：保单出单类型：0:普通出单，1：by_event 出单;
+    String package_category: 与prodctCategory相同;
+}
+note left:一年登山保险保费计划\n国家旅行个人计划 1A
+
+
+class "package_product(产品组合与产品关系)" as package_product{
+    String package_id;
+    String product_id;
+    String category_code：产品类别code;
+    String formula_level：公式级别;
+    String parent_id: 父产品id(一般为主险，也可能附加险);
+    String unit_type：保额保费类型1-"保额算保费"2-"保费算保额";
+    String amount:保额;
+    String premium:保费;
+    String renew_category:续保分类:1保证续保2可续保3不可续保;
+}
+
+package_product-up->package
+
+
+@enduml

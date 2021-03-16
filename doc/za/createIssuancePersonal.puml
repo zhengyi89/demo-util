@@ -1,0 +1,144 @@
+@startuml
+start
+:契约情报登录API;
+
+if (判断请求地址为personal或group) then (personnal)
+  :设置契约类型为“個別契約”;
+else (group)
+  :设置契约类型为”一般包括契約“;
+endif
+
+partition 请求参数校验 {
+    : 参数基本校验;
+    note right
+        注解方式校验
+        会员标记枚举校验
+        连携先会员ID
+        保费校验
+        加入日時校验
+        保険開始日校验
+        保険終了日校验
+        标的信息校验
+    end note
+    :最大保障期间校验;
+    note left
+        国旅商品保障期间比较
+        和海    旅商品保障期间比较
+    end note
+    :保险日期、募集期、投保人年龄校验;
+    :动态险种信息校验;
+}
+if (校验结果) then (成功)
+  :设置契约类型为“個別契約”;
+else (失败)
+  :返回对应错误信息;
+  stop
+endif
+
+
+if (获取redis锁) then (成功)
+else (失败)
+  :返回”予約番号は重複できません“;
+  stop
+endif
+
+partition 订单唯一性校验 {
+    :根据goodsId和goodCode获取goodsConfig;
+    note right #FF0000
+        #goods概念
+    end note
+    if (goodsConfig为空) then (yes)
+      stop
+    endif
+
+    :根据Scenario设置orderNO;
+
+
+    note right #FF0000
+        #商品计划概念
+    end note
+    if (根据orderNo查询商品计划) then (成功)
+      if (BizApplyId不为空) then (yes)
+           :返回”BIZ_00001“;
+           stop
+        else (no)
+           :设置业务场景为goodsConfig Scenario;
+        endif
+    else (失败)
+      :返回”データ操作エラー“;
+      stop
+    endif
+}
+
+partition 生成客户信息 {
+    if (kafka是否可用) then (yes)
+        :调用cloud接口保存保单用户信息;
+    else (no)
+      :根据保单用户信息和channel获取保单用户列表;
+      if (业务场景) then (SETP1)
+              :发送用户信息到kafka;
+          else (SETP2)
+            :调用cloud接口保存保单用户信息;
+          endif
+    endif
+    note right #FF0000
+                    #kafka是否可用
+                end note
+}
+:生成业务申请编号;
+:保存业务申请单;
+if (业务场景为SETP1&&需要上传) then (yes)
+    :遍历投保标的列表，上传设备标的明细;
+endif
+
+
+partition 生成产品信息 {
+    if (根据saleStartTime、saleEndTime和InsureDate判断投保日期是否有效) then (no)
+        :返回“保険申込日は製品の販売期間中ではありません”;
+    else (yes)
+      if (业务场景==SETP1) then (yes)
+              :productCategory校验、goodsId和planId是否匹配;
+          endif
+    endif
+'    :根据查询出来的产品信息构建产品列表;
+    if (请求报文投保险种列表为空) then (yes)
+       :根据查询出来的产品信息构建产品列表;
+    else (no)
+       :设置投保险种列表信息;
+    endif
+}
+
+
+:创建投保单信息(调用cloud接口);
+
+:更新业务申请单状态数据;
+
+partition 保存支付信息 {
+    if (校验付款人信息) then (成功)
+        if (判断业务场景) then (SETP1)
+           :调用spi接口保存支付信息;
+           if (保存结果) then (失败)
+              :删除投保单;
+           endif
+        else (SETP2)
+           :调用spi接口保存支付信息;
+           if (保存结果) then (失败)
+             :重新发起保存;
+          endif
+        endif
+    endif
+}
+
+if (需要校验黑名单&&业务场景为SETP1) then (是)
+  if (调用spi接口查询黑名单结果) then (是黑名单)
+    :返回“投被保人在黑名单”;
+    stop
+  endif
+endif
+
+:释放redis锁;
+:拼装返回报文并返回;
+
+stop
+
+@enduml

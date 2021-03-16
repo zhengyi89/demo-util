@@ -1,0 +1,164 @@
+@startuml
+
+
+'class "policy(保单)" as policy{
+'    String issuance_id：投保单id;
+'    String goods_plan_id：营销计划id;
+'    String issuance_no：投保单号;
+'    String policy_no：保单号;
+'    String policy_relation_no：关系单号;
+'    String policy_status:保单状态;
+'    String package_code;
+'    String goods_plan_code;
+'    String goods_code;
+'    String agreement_no;
+'    String goods_id;
+'    String policy_relation_id;
+'}
+'
+'class "policy_insurant\n(保单被保险人)" as policy_insurant{
+'    String policy_product_id;
+'    String policy_id;
+'    String holder_relation;
+'    String user_type;
+'    String customer_id;
+'    String level;
+'    String parentId;
+'}
+'policy_insurant-up->policy
+
+class "issuance_relation(关系投保单)" as issuance_relation{
+    biz_apply_id 业务系统申请id;
+    issuance_status;
+    insure_date 投保时间;
+    effective_date 保险起期;
+    channel_id 渠道id;
+    holder_customer_id 投保人客户id;
+    record_no 番号;
+}
+
+enum issuance_status{
+    6:核保通过
+    10生效
+}
+issuance_status-issuance_relation
+
+class "issuance(投保单)" as issuance{
+    biz_apply_id;
+    goods_plan_id;
+    order_no;
+    issuance_no;
+    policy_no;
+    package_def_id:产品组合id;
+    issuance_relation_id:关系保单id;
+    issuance_status;
+    underwrite_decision;
+    insure_date;
+    pay_date;
+    holder_customer_id;
+    channel_id;
+
+    package_code;
+    goods_plan_code;
+    goods_code;
+    agreement_no;
+    goods_id;
+    policy_relation_id;
+}
+issuance-up->issuance_relation
+
+class "insurance_insurant\n(投保单被保险人)" as insurance_insurant{
+    String issuance_id;
+    String user_type;
+    String customer_id;
+    String level;
+    String parentId
+}
+insurance_insurant-up->issuance
+'issuance.policy
+
+class "insurance_product\n(投保单险种信息)" as insurance_product{
+    issuance_id
+    product_id
+    product_code
+    main_id
+    effective_date 险种起期
+    expiry_date 险种止期
+    unit
+    sum_insured
+    total_install_premium
+    coverage_period_type
+    coverage_period
+    payment_frequency 缴费频率1:趸交 2:年缴 3:半年缴 4:季缴 5:月缴
+    payment_frequency_value 缴费频率值
+    can_renewal  续保标识 1:保证续保,2:可续保,3:不可续保
+    holder_customer_id
+}
+insurance_product-right->issuance
+
+class "insurance_payer\n(投保单支付信息)" as insurance_payer{
+    payer_type 付款类型:1，首期付款人；2，续期付款人
+    issuance_id;
+    customer_id 付款人id
+    main_insured_relation 与投保人关系
+    mobile_id
+    address_id
+    pay_account_id
+    pay_method 支付方式
+    pay_amount 支付金额
+    share_percentage 支付份额
+    holder_customer_id
+    email_id
+}
+insurance_payer-up->issuance
+
+class "insurance_holder\n(投保单投保人)" as insurance_holder{
+    issuance_id 投保单id
+    user_type 用户类型1：个人，2：公司
+    customer_id 客户id
+    email_id
+    contact_id
+    mobile_id
+    address_id
+    main_insured_relation 与主被保险人关系
+    income 年收入（万元）
+    family_income
+    delivery_address_id 投保地址
+}
+insurance_holder-up->issuance
+
+
+class "insurance_product_liability\n(投保单险种信息)" as insurance_product_liability{
+    issuance_product_id
+    issuance_id
+    liability_id
+    can_option 是否可选 1:是 2：否
+    can_underwrite 是否核保通过 1:是 2：否
+    unit 投保份数
+    sum_insured 保额
+    period_premium 责任标准体期缴保费
+    next_period_premium 下期责任标准体期缴保费
+    annual_premium 责任年化保费
+    allowance_flag 津贴标志
+    allowance_type 津贴类型
+    allowance_times 津贴数
+    holder_customer_id 投保人客户id
+    liability_code 责任代码
+}
+insurance_product_liability-left->issuance
+
+class 标的信息{
+}
+
+enum 标的类型{
+    建筑标的
+    合同标的
+    设备标的
+    人员标的
+    行程标的
+}
+标的类型-标的信息
+
+标的信息-up->issuance
+
+@enduml
