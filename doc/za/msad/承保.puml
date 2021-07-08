@@ -1,0 +1,18 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+policyBatch -> policyBatch: 从cdc查询待承保保单
+policyBatch -> bizapply: /outer/bizapply/confirmIssuance\n(承保接口，按投保单循环调用)
+
+bizapply -> issuance: /issuance/createIssuance(出单接口)
+
+issuance --> policy: async msg ${policyRelation}
+
+policy -> policy: 承保
+policy --> bcp: async msg ${kafkaProducerTagEffectivePolicy}
+policyBatch -> policyBatch:generateRenewalPolicyList
+
+
+@enduml

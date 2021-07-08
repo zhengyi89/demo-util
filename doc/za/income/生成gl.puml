@@ -1,0 +1,69 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+start
+
+:kafka消费tag【general-ledger-income-dev2】消息;
+
+:保存消息报文到db【gl_req_log】;
+
+:消息内容校验;
+
+:根据transactionType和goodsId查询gl消息模板【push_data_template】;
+
+if(push_data_template::isRandom) then (yes)
+    :系统生成gl流水号;
+else (no)
+    :gl流水号使用传入的transNo;
+endif
+
+:入参转换成map，并put需要的参数到map;
+
+:使用strSubstitutor工具类替换模板变量，转换成需要的dto;
+
+repeat
+:获取分布式锁;
+repeat while (获取失败并且获取失败次数<最大重试次数?) is (yes) not (no)
+
+:查询AccountingFinance数据;
+
+if(判断AccountingFinance是否存在) then (存在)
+    :获取financeId
+else (不存在)
+    :保存AccountingFinance，获取financeId;
+endif
+
+:释放分布式锁;
+
+if(financeId==null || financeId==-1L) then (yes)
+    :返回失败报文;
+    end
+endif
+
+:获取数据推送分布式锁;
+
+:根据accountingFinanceId获取gl_push_data信息;
+
+if (查到记录并且推送状态为success) then (yes)
+    :返回成功;
+    end
+else
+    :拼装gl push报文;
+endif
+
+: http调用Droplet接口;
+:解析返回报文;
+
+:根据accountingFinanceId获取gl_push_data信息;
+
+if (查到记录并且推送状态为success) then (yes)
+    :更新数据和retryNum+1;
+else
+    :新增GlPushData数据;
+endif
+
+:释放数据推送分布式锁;
+:返回处理成功;
+
+end
+@enduml

@@ -1,0 +1,71 @@
+@startuml
+class "formula_table(公式)" as formula_code{
+    formula_code 公式编号
+    formula_name 公式名称
+    formula_detail 公式详细
+    params_factor 计算因子
+    contains_rate_table_code 计算因子
+}
+note left:102-意外\n103-医疗
+
+
+class "liability(责任)" as liability{
+    String liability_category_parentId;
+    String liability_code;
+}
+note right: 401-航空意外身故\n402火车意外身故\n(责任级别-102意外)
+
+liability-up->liability_category
+
+
+class "product(险种)" as product{
+    String name;
+    String insurance_product_code;
+    String code;
+    String product_category_id;
+    String product_type;
+    String coverage_period_category;
+    String renewal_category;
+}
+note left: A1_标准计划100万日元课程\nA2_标准计划200万日元课程
+
+enum product_type{
+    1主险
+    2附加险
+}
+
+enum "coverage_period_category\n保障期限类型" as coverage_period_category{
+    1长期险
+    2短期险
+    3极短险
+}
+
+enum "renewal_category\n续保分类" as renewal_category{
+    1保证续保
+    2可续保
+    3不可续保
+}
+
+product.. product_type
+product.. coverage_period_category
+product.. renewal_category
+product-up->product_category
+
+
+class product_category{
+    String categoryCode;
+    String categoryName;
+    String level;
+    String parentId
+}
+note left:117-医疗\n118-意外
+
+class "product_liability\n(产品责任关系)" as product_liability{
+    String product_id;
+    String liability_id;
+}
+
+product.right product_liability
+liability.left product_liability
+
+@enduml
