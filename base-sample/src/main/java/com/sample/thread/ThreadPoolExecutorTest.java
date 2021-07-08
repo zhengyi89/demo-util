@@ -20,8 +20,8 @@ public class ThreadPoolExecutorTest {
 	public static void main(String[] args) {
 		ThreadPoolExecutorTest t = new ThreadPoolExecutorTest();
 //		 t.newCachedThreadPoolTest();
-		 t.newFixedThreadPoolTest();
-//		t.newScheduledThreadPoolTest();
+//		 t.newFixedThreadPoolTest();
+		t.newScheduledThreadPoolTest();
 //		t.newSingleThreadExecutorTest();
 	}
 
@@ -75,8 +75,9 @@ public class ThreadPoolExecutorTest {
 	/**
 	 * 创建一个定长线程池，支持定时及周期性任务执行。
 	 */
+	ScheduledExecutorService scheduledThreadPool = Executors.newScheduledThreadPool(5);
 	public void newScheduledThreadPoolTest() {
-		ScheduledExecutorService scheduledThreadPool = Executors.newScheduledThreadPool(5);
+
 		/*
 		 * 表示延迟3秒执行
 		 */
