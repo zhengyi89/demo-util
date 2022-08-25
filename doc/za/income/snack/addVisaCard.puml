@@ -1,0 +1,30 @@
+@startuml
+
+start
+:根据channelUserId从customer查询,判断channelUerId有效性;
+
+:判断用户有效绑卡数量不大于5;
+note left: 根据channelUserId+dataSourceCode+status从userCard表查询
+
+if(当前卡是否已被其他人绑定) then (yes)
+    stop;
+endIf
+
+if(当前卡是否已经绑定且状态有效) then (yes)
+    stop;
+endIf
+
+:新增user_card信息;
+
+if(user当前是否绑定了dataSource) then (no)
+    :新增optGoods;
+endIf
+
+:查询用户dataSource绑定信息;
+if(查询结果为空或user dataSource状态过期) then (yes)
+    :新增user_data_source信息;
+elseif(user dataSource状态为close) then (yes)
+    :更新user_data_source状态为有效;
+endIf
+stop
+@enduml

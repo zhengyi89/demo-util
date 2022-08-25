@@ -1,0 +1,73 @@
+@startuml
+
+start
+:根据被保人证件号通融全查，获取保单详情列表;
+
+:根据证件号查询这个被保人做过的所有保全类型为被保人remove的保全列表，并获对应保单详情列表;
+note: 被保人从保单remove掉，根据身份证号查不到保单，只能从保全查
+
+:保单维度，对上两步查询结果做并集，获取完整的通融全查结果;
+
+if(通融全查结果为空) then ( )
+    stop
+endif
+
+if(判断出险类型) then (CRITICAL_ILLNESS)
+    :返回通融列表无匹单;
+    stop
+endif
+
+:根据出险原因（claimType+claimNature）获取支持的责任列表;
+
+if(支持责任列表为空) then ( )
+    :返回通融列表无匹单;
+    stop
+endif
+
+:根据支持责任列表获取支持产品列表;
+:根据productId+事故时间+等待期+被保人证件号(如果被保人做过减员，证件号查不到保单，使用policyNo)精准匹单;
+if(精准匹单结果) then (空)
+    :返回通融列表无匹单;
+    stop
+else(非空)
+    :遍历精准匹单列表获取事故日当天保额为保单SA;
+endif
+
+':如果当前案件处理流程为立案保存或立案提交（包含）之后，根据历史匹单结果进行匹单;
+
+if(匹配中的保单支持出小保单但是小保单数量为0) then (yes)
+    :返回通融列表无匹单;
+    stop
+endif
+
+
+repeat:遍历精准匹单列表
+
+
+    :判断事故日是否在保障期间期间内（如果保单中止，保单结束时间为中止时间，freelook生效时间等于中止时间）;
+    if(PA或PALite保单) then (yes)
+        :被保人可已被添加或移除，因此被保人的有效期间和保障期间可能不一致，根据保全被保人添加/移除计算准确的保障期间，进行判断;
+    elseif(ilp保单) then (yes)
+        : 根据保单号和事故日从fund查询当天保额;
+    endif
+
+    if(normal policy?) then (yes)
+        :根据policyNo计算累计赔付金额（如果是pa/palite,根据policyNo+certiNo计算）;
+    else
+        :根据cdc精准匹单的所有小保单计算累计赔付保额;
+    endif
+
+    if(ilp保单) then (yes)
+        :准备金为0;
+    else (yes)
+        :调用market计算准备金;
+    endif
+
+    :根据保障期间校验结果设置匹单结果;
+
+repeat while(遍历结束?) is (no)
+
+:返回匹单结果;
+
+stop
+@enduml

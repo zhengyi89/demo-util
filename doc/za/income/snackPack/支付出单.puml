@@ -1,0 +1,38 @@
+@startuml
+
+start
+:参数校验;
+
+:获取分布式锁，没有获取等待后再次获取，直至获取到;
+
+:根据channelUserId查询投保人信息;
+note:接口：{{customer_host}}/customer/channelUser/query\n入参：{"channelUserId":567447}
+
+:根据goodsCode+planCode查询product信息;
+note:需要确认这个方法是否可以marketSPIService.queryGoodsAndPlan
+
+:查询stripe customer_id;
+note:customer.channel_user_account account_user_id
+
+partition "policy 出单" {
+    :核保校验;
+    :校验支付金额和商品拆分计算金额是否相等;
+    :创建issuance;
+}
+
+partition 支付环节 {
+    :创建卡支付记录;
+    note:保存到passage.order_payment_card_record\ncard_id关联卡信息表id、调用stripe入参字段description格式：\nchannelUserId_期数_businessNo,首次出单：channelUserId_1_nb
+    :调用Stripe发起支付（参考tribe）;
+    :更新stripe支付id、支付状态等信息;
+}
+
+:释放分布式锁;
+
+: 发送支付成功邮件;
+: 投保确认，承保(异步);
+
+
+
+stop
+@enduml

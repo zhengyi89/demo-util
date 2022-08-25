@@ -1,0 +1,9 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+索赔人 -> 系统: 提交索赔
+系统 -> 系统: 检查用户是否同时拥有Snack ILP和其他有死亡责任的产品
+
+@enduml

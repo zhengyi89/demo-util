@@ -1,0 +1,172 @@
+@startuml
+
+class data_source{
+    data_source_code;
+    data_source_name;
+    type 数据来源类型;
+    channel 数据来源渠道;
+}
+
+class "user_card（用户dataSource卡）" as user_card {
+    channel_user_id;
+    data_source_code;
+    external_user_id 第三方用户ID;
+    card_id 卡ID(唯一标识);
+    card_no 卡号;
+    card_type;
+    last_four_digital 卡后四位;
+    status 状态(1:生效 2:移除);
+    add_date;
+    remove_date;
+    card_issuer_name 发卡行;
+}
+
+data_source "1" *-- "many" user_card
+
+class user_data_source {
+    channel_user_id;
+    data_source_code;
+    status;
+    unique_code 用户数据源唯一标识;
+    binding_time;
+    untying_time;
+    card_issuer_name 发卡行;
+}
+
+data_source  <--  user_data_source
+
+
+class trigger_category {
+    trigger_category_code;
+    trigger_category_name;
+    compare_tag 触发器阈值判断条件;
+    threshold 触发器阈值;
+    channel 触发器渠道;
+    sort_num 排序字段;
+    display_option;
+}
+
+enum display_option {
+    1-EZLINK;
+    2-FAIRPRICE;
+    3-FOODPANDA;
+    4-INCOME;
+    5-LALAMOVE;
+    6-MILKRUN
+}
+
+trigger_category ..> display_option
+
+class opt_in {
+    channel_user_id;
+    opt_in_date;
+    opt_out_date;
+    expect_cap;
+    status;
+    auto_investment_flag;
+}
+
+enum opt_in_status {
+    EFFECTIVE(1, "有效"),
+    EXPIRED(2, "过期"),
+    SUSPEND(3, "暂停"),
+    INVALID(4, "无效"),
+    FAILED(5, "失败"),
+    DEACTIVATED(6, "停用"),
+    REACTIVATED(7, "激活"),
+    FREEZE(8, "冻结");
+}
+
+opt_in .> opt_in_status
+
+class opt_goods{
+    channel_user_id;
+    opt_in_id;
+    goods_code;
+    promo_code;
+    status;
+    opt_in_date;
+    opt_out_date;
+}
+
+opt_in "1" *-- "many" opt_goods
+
+
+class opt_trigger {
+    channel_user_id;
+    opt_goods_id;
+    trigger_category_code;
+    goods_plan_code;
+    trigger_premium;
+    trigger_sa;
+    status;
+}
+
+opt_trigger -up-> trigger_category
+
+class user_opt_in_plan {
+    channel_user_id;
+    goods_code;
+    goods_plan_code;
+    trigger_category_code;
+    data_source_code;
+    status;
+}
+
+class pre_auth_cap{
+    channel_user_id;
+    pre_auth_cap;
+    used_cap;
+    effective_time;
+    expiry_time;
+    pre_auth_no stripe授权码;
+    status;
+    capture_status 扣款状态 0：未扣款，1：扣款成功，2：扣款失败;
+    capture_time;
+    cap_time 授权时间;
+    auto_investment_flag;
+}
+
+opt_in .. pre_auth_cap
+
+user_data_source .. user_opt_in_plan
+
+opt_goods .. user_opt_in_plan
+
+opt_trigger .. user_opt_in_plan
+
+
+class trigger_relation_datasource {
+    trigger_category_id;
+    data_source_id;
+}
+
+trigger_relation_datasource -left-> trigger_category
+trigger_relation_datasource -> data_source
+
+
+'class trigger_relation_merchant {
+'    trigger_category_id;
+'    merchant_id;
+'}
+
+
+class offer {
+    offer_code;
+    trigger_category_code;
+    status;
+}
+
+class user_offer {
+    channel_user_id;
+    offer_code;
+    trigger_category_code;
+    status;
+    offer_join_date 开通时间;
+    offer_close_date;
+    deactivation_code;
+}
+
+user_offer ..> offer
+@enduml
+

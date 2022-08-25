@@ -1,0 +1,29 @@
+@startuml
+
+start
+:ILP不能跟其他产品同时optIn;
+
+if(用户是否存在deactive的optIn) then (yes)
+    :返回“channel user {}'s account is deactivated”;
+    stop;
+endIf
+
+:获取goods明细;
+:判断channelUserId是否有效;
+
+:遍历goodslist,判断user是否准入(黑名单与核保校验);
+
+:新增或修改optIn信息，同步更新optInTrace;
+
+:如果所有产品都没有校验通过，且当前没有可用optGoods，更新statusChangeTime;
+
+if(是否存在optGoods) then (no)
+    :新增optGoods;
+elseif(yes and not effective)
+    :更新optGoods状态;
+else(yes and effective)
+endIf
+
+:保存核保问卷;
+stop
+@enduml

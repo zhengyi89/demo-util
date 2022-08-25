@@ -1,0 +1,26 @@
+@startuml
+note: snackPack strip已回调、bcp数据未settle处理，tools\n入参 policy_no/current_index，policy_no为空，处理所有snackPack保单
+start
+
+:根据保单号查询channelUserId，如果保单号为空，查询snackPack所有保单;
+repeat:遍历保单
+if(入参传入currentIndex) then (是)
+    : 查询支付记录;
+    note: 根据stripe_description模糊查询order_payment_card_record\n查首期支付记录channelUserId_1_%，获取passage_apply create_time后第一条支付记录\n非首期支付记录查询channelUserId_currentIndex_policyNo
+else(否)
+    :查询首期支付记录;
+    :根据保单号查询其他期数支付记录%_policyNo;
+endif
+
+:得到待处理支付记录（一条或多条）;
+:根据source_no(支付记录的charge_id)查询balance_transaction_record;
+:查询receive_payable(/queryBillAndReceivablePayable)，判断是否已settle处理（feeStatus=9）;
+
+if(有回调并且bcp未settle) then(是)
+    : 调用bcp做settle;
+    note: 参考SnackPackSettlementHandler现有代码，调用updateBcp方法
+endif
+
+repeat while(保单遍历结束?) is (no)
+stop
+@enduml

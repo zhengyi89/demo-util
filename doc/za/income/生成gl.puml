@@ -28,7 +28,7 @@ repeat while (获取失败并且获取失败次数<最大重试次数?) is (yes)
 :查询AccountingFinance数据;
 
 if(判断AccountingFinance是否存在) then (存在)
-    :获取financeId
+    :获取financeId;
 else (不存在)
     :保存AccountingFinance，获取financeId;
 endif

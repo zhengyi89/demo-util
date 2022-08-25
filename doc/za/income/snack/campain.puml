@@ -1,0 +1,66 @@
+@startuml
+
+
+class "campaign(活动)" as campaign{
+    campaign_code;
+    campaign_name;
+    campaign_type(活动类型);
+    discount_type(优惠类型 1-Percentage 2-Amount);
+    is_enabled：状态 1-生效 2-失效;
+}
+
+enum 活动类型{
+    1-保额赠送;
+    2-保费折扣;
+    3-赠险;
+    5-redeem;
+    6-upsize;
+}
+
+campaign .> 活动类型
+
+
+class campaign_goods_relation {
+    campaign_id;
+    goods_id;
+    goods_code;
+    goods_plan_id;
+    goods_plan_code;
+}
+
+campaign "1" *-- "many" campaign_goods_relation
+
+
+class "campaign_promo_detail(活动促销详细)" as campaign_promo_detail {
+    campaign_promo_id;
+    promotion_code;
+    channel;
+    payer;
+    index;
+    discount_type 优惠类型 1-Percentage 2-Amount;
+}
+campaign "1" *-- "many" campaign_promo_detail
+
+class campaign_promo_relation {
+    campaign_id;
+    promotion_code;
+    total_usage 可使用总次数;
+    used_times 已使用次数;
+    promo_dimension 1:ByProduct/2:ByUser/3:ByProductAndUser;
+}
+campaign "1" *-- "many" campaign_promo_relation
+
+campaign_promo_detail .. campaign_promo_relation
+
+
+class "user_brand_premium_record(用户BP保单表)" as user_brand_premium_record {
+    channel_user_id;
+    promo_code;
+    partner;
+    business_time;
+    status;
+}
+
+user_brand_premium_record .up.> campaign_promo_detail
+@enduml
+
