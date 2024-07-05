@@ -1,0 +1,39 @@
+@startuml
+
+start
+:新建盘点单;
+
+:更新user smock状态;
+
+:获取核保规则并调用核保接口;
+
+:查询用户optInPlan信息，与当前入参opt trigger比较，得到要更改的;
+
+:遍历待绑定的trigger list,判断trigger和dataSource是否绑定;
+
+if(trigger操作类型为add) then (yes)
+    :activateUserOffer;
+    if(判断userOffer是否存在) then (存在)
+        stop;
+    endIf
+    :调用visa activate offer;
+    if (调用结果) then (succ)
+       :新增userOffer信息;
+    else (fail)
+        :调用visa deactivate offer;
+        :更新userOffer状态为deactive;
+    endIf
+endIf
+
+if (operateType) then (add)
+    : 新增optTrigger、userOptInPlan;
+elseif(delete)
+    :逻辑删除optTrigger、userOptInPlan;
+    :调用visa关闭对应trigger;
+elseif(update)
+    :修改optTrigger、userOptInPlan;
+    :调用visa打开/关闭对应trigger;
+endIf
+:promoCode 发生变化, 更新opt-goods信息;
+stop
+@enduml

@@ -1,0 +1,416 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+
+class "base_info_compatible(电子报告基本信息)" as base_info_compatible{
+collect_target_id 单次取证唯一性编号
+manufacturer 采集设备厂商名称
+security_software_orgcode 采集设备厂商组织机构代码
+name 检材持有人姓名
+certificate_type 检材持有人证件类型
+certificate_code 检材持有人证件号码
+capture_time 采集时间
+model 设备型号
+dual_time 采集时长:时间单位为秒
+caseid
+phone 被提取设备的本机号码
+msisdn 本机号码
+msisdn_username 本机名称
+brand 品牌
+operating_system 操作系统
+versions 版本
+default_capacity 存储容量
+used_capacity 已用存储容量
+bluetooth 蓝牙地址
+imei
+iccid
+operator 运营商
+file_name 该份报告的名字
+}
+
+
+
+class "ec_trade_record_compatible(电子数据交易记录)" as ec_trade_record_compatible{
+collect_target_id 单次取证唯一性编号
+network_app 电子商务类软件类型
+account_id 本机用户ID
+account 本机账号
+regis_nickname 本机昵称
+friend_id 对方用户ID
+friend_account 对方账号
+friend_nickname 对方昵称
+local_action 01接收方、02发送方
+business_time 以付款为标志
+money 交易金额
+deal_status 0未知、1交易未开始、2交易中、3交易完成、4交易关闭、5交易失败、9其他
+relafulldesc 详细描述
+talk_id 单条交易记录的全局唯一性标识ID
+delete_status 删除状态0未删除 1已删除
+delete_time 删除时间
+contact_account_type 支付类型，例如：京东购物使用的微信支付、微信绑定的工商银行卡
+user_acttime 拼多多等拼单软件，拼成功的时间，不早于交易时间。
+caseid 案件id
+msisdn_username 本机姓名
+phone 被提取设备的本机号码
+html_file_name 数据来源文件路径
+}
+
+class "im_account_compatible(社交app账户)" as im_account_compatible{
+collect_target_id 电子取证采集目标编号
+contact_account_type 账号类型,即时通信应用类型
+account_id 用户ID
+account 账号,为登录使用的账号
+regis_nickname 昵称
+fixed_phone 电话号码
+sexcode 性别
+sign_name 个性签名
+user_photo 头像,附件文件路径
+account_reg_date 账号注册时间
+last_login_time 账号最后登录时间
+caseid
+msisdn 本机号码
+msisdn_username 本机名称
+phone 被提取设备的本机号码
+analyze_device_num 厂商对应的数字(方便合并后做测评)
+html_file_name 数据来源文件路径
+}
+
+class "im_friend_chat_compatible(聊天记录)" as im_friend_chat_compatible{
+collect_target_id 电子取证采集目标编号
+contact_account_type 账号类型,即时通信应用类型
+account_id 用户ID
+account 账号,为登录使用的账号
+regis_nickname 昵称
+friend_id 好友用户ID
+friend_account 好友账号
+friend_nickname 好友昵称
+content 即时信息内容
+mail_send_time 发送时间
+local_action 01接收方、02发送方、99其他
+delete_status 删除状态
+media_type 类型：01文本 02图片 03音频 04视频 05 交易 06定位 99其他
+trade_money 交易金额
+city_code 地点名称
+company_address 详细地址
+longitude 经度
+latitude 纬度
+above_sealevel 海拔
+business_status 成功状态
+dual_time 通话时长或视频聊天时长（单位：秒）
+attachment_path 附件路径
+caseid
+msisdn 本机号码
+msisdn_username 本机名称
+phone 被提取设备的本机号码
+}
+
+class "geo_journey_info_compatible(行程信息)" as geo_journey_info_compatible{
+}
+
+
+class "browse_search_record_compatible(浏览器搜索信息)" as browse_search_record_compatible{
+}
+class browse_account_compatible{
+}
+class browse_cookies_info_compatible{
+}
+class browse_favorite_compatible{
+}
+
+class "call_record_compatible(通话记录明细)" as call_record_compatible{
+collect_target_id 电子取证采集目标编号
+relationship_account 对方号码
+relationship_name 联系人姓名
+call_status 通话状态;0未接、1接通、9其他
+local_action 01接收方、02发送方、99其他
+start_time 通话开始时间
+end_time 通话结束时间
+dual_time 通话时长;单位为秒
+caseid 案件id
+msisdn 本机号码
+msisdn_username 本机名称
+phone 被提取设备的本机号码
+analyze_device_num 厂商对应的数字
+html_file_name 数据来源文件路径
+}
+
+class "contacts_detailed_compatible(通讯录拆分)" as contacts_detailed_compatible{
+collect_target_id 电子取证采集目标编号
+sequence_name 通讯录ID:用于表的关联
+phone_value_type 通讯录字段类型:01电话号码，02Email，03地址，04即时通信，05网站，06纪念日，07备注，08群组，99其他
+relationship_account 电话号码
+caseid
+msisdn 本机号码
+msisdn_username 本机名称
+phone 被提取设备的本机号码
+html_file_name 数据来源文件路径
+}
+
+class "contacts_id_compatible(通讯录)" as contacts_id_compatible{
+collect_target_id 电子取证采集目标编号
+sequence_name 通讯录ID:用于表的关联
+relationship_name 联系人姓名
+privacyconfig 是否加密
+delete_status 是否已删除
+caseid
+msisdn 本机号码
+msisdn_username 本机名称
+phone 被提取设备的本机号码
+html_file_name 数据来源文件路径
+}
+
+class "rework_call(号码维度统计通话)" as rework_call{
+collect_target_id 电子取证采集目标编号
+msisdn 本机号码
+msisdn_username 本机名称
+relationship_account 联系人电话号码
+relationship_name 联系人姓名
+phone 被提取设备的本机号码
+call_frequency 通话总次数
+call_frequency_del 通话总次数(删除)
+dialing 主叫次数
+dialing_del 主叫次数(删除)
+incoming_call 被叫次数
+incoming_call_del 被叫次数(删除)
+total_time 通话累计时间
+total_time_del 通话累计时间(删除)
+avg_frequency 通话平均时间
+caseid
+}
+
+class "rework_sms(号码维度统计短信)" as rework_sms{
+collect_target_id 电子取证采集目标编号
+msisdn 本机号码
+msisdn_username 本机名称
+relationship_account 联系人电话号码
+relationship_name 联系人姓名
+call_status
+delete_status
+phone 被提取设备的本机号码
+sms_frequency 短信次数
+sms_frequency_del 短信次数(删除)
+sms_messages 接收次数
+sms_messages_del 接收次数(删除)
+sms_send 发送次数
+sms_send_del 发送次数(删除)
+caseid
+}
+
+class "rework_contacts(通讯录展开)" as rework_contacts{
+collect_target_id 电子取证采集目标编号
+relationship_account 联系人电话号码
+caseid
+msisdn 本机号码
+msisdn_username 本机名称
+phone 被提取设备的本机号码
+phone_value_type 通讯录字段类型:01电话号码，02Email，03地址，04即时通信，05网站，06纪念日，07备注，08群组，99其他
+relationship_name 联系人姓名
+html_file_name 数据来源文件路径
+}
+
+class "geo_app_location_compatible(应用地理位置信息)" as geo_app_location_compatible{
+collect_target_id 电子取证采集目标编号
+name APP名称
+longitude 经度
+latitude 纬度
+address_name 地点
+address 详细地址
+caseid
+msisdn 本机号码
+msisdn_username 本机名称
+phone 被提取设备的本机号码
+html_file_name 数据来源文件路径
+}
+
+class "rework_im(社交app好友聊天统计)" as rework_im{
+collect_target_id 电子取证采集目标编号
+account_id 用户ID
+account 账号,为登录使用的账号
+friend_account 好友账号
+friend_nickname 好友昵称
+friend_add_type 添加好友方式
+min_mail_send_time 与当前好友的最早联系时间
+max_mail_send_time 与当前好友的最早联系时间
+delete_record 删除聊天数
+send_record 聊天发送次数
+recives_record 聊天接收次数
+chat_record 聊天记录数
+caseid
+phone 被提取设备的本机号码
+msisdn 本机号码
+msisdn_username 本机名称
+friend_remark 好友备注
+sexcode 性别
+}
+
+class "im_group_chat_compatible(社交app群聊天统计)" as im_group_chat_compatible{
+collect_target_id 电子取证采集目标编号
+contact_account_type 账号类型,即时通信应用类型
+account_id 用户ID
+account 账号,为登录使用的账号
+group_num 群组ID
+group_name 群组名称
+friend_id 好友用户ID
+friend_account 好友账号
+friend_nickname 好友昵称
+content 即时信息内容
+mail_send_time 发送时间
+local_action 01接收方、02发送方、99其他
+media_type 类型：01文本 02图片 03音频 04视频 05 交易 06定位 99其他
+delete_status 删除状态
+trade_money 交易金额
+regis_nickname 昵称
+city_code 地点名称
+company_address 详细地址
+longitude 经度
+latitude 纬度
+above_sealevel 海拔
+business_status 成功状态
+dual_time 通话时长或视频聊天时长（单位：秒）
+attachment_path 附件路径
+caseid
+msisdn 本机号码
+msisdn_username 本机名称
+phone 被提取设备的本机号码
+}
+
+class "sms_record_compatible(手机短信明细)" as sms_record_compatible{
+collect_target_id 电子取证采集目标编号
+msisdn 本机号码
+msisdn_username 本机名称
+relationship_account 对方号码
+relationship_name 联系人姓名
+local_action 01接收方、02发送方
+content 即时信息内容
+mail_send_time 发送时间
+mail_view_status 查看状态;0未读，1已读
+caseid
+phone 被提取设备的本机号码
+html_file_name 数据来源文件路径
+}
+
+class "im_friends_compatible(社交app好友明细)" as im_friends_compatible{
+collect_target_id 电子取证采集目标编号
+contact_account_type 应用类型
+account_id 用户ID
+account 登录账号
+friend_id 好友用户ID
+friend_account 好友账号
+friend_nickname 好友昵称
+friend_group 好友分组信息
+friend_remark 好友备注
+regis_nickname 昵称
+msisdn 本机号码
+msisdn_username 本机名称
+sexcode 性别
+age 年龄
+caseid
+phone 被提取设备的本机号码
+html_file_name 数据来源文件路径
+}
+
+class "rework_imaccount(社交app账户概要)" as rework_imaccount{
+caseid
+phone 被提取设备的本机号码
+contact_account_type 应用类型
+item 条目名称：好友，群，公众号等
+item_count 条目数量
+regis_nickname 昵称
+account 登录账号
+detail_name 对应的名称（好友/群组）
+detail_account 对应的账号（好友/群组）
+last_send_time 最后发送时间
+}
+
+class "rework_time_line(时序活动)" as rework_time_line{
+caseid
+phone 被提取设备的本机号码
+app 软件(查看详情时对应查哪张表)
+data_time 发生时间
+hour 小时
+minute 分
+event 数据所属的事件类型
+data_num 数据在所属的app的某段时间的某个类型事件中的数量
+earliest_time 该类数据在这个时段的最早时间
+friend_account 对方账号
+friend_name 对方昵称
+friend_remark 对方备注
+account 本方账号
+regis_nickname 本方昵称
+contact_account_type 账号类型:即时通信应用类型
+table_name 数据来源表
+content 内容
+title 活动类型
+media_type 消息类型
+}
+
+class "rework_personnel_diagram(通联概要)" as rework_personnel_diagram{
+caseid
+phone 被提取设备的本机号码
+msisdn_username 本机名称
+account 本方账号
+regis_nickname 本方昵称
+friend_number 对方账号
+friend_name 对方昵称
+friend_remark 对方备注
+chat_num 聊天数量/短信数量/电话数量
+source 来源于微信/QQ/短信/电话等
+contact_account_type 账号类型,即时通信应用类型
+time
+}
+
+
+class "rework_geo_spot(定位信息统计)" as rework_geo_spot{
+longitude 经度
+latitude 纬度
+caseid
+phone 被提取设备的本机号码
+locate_type 定位数据类型
+login_time 定位时间
+company_address 详细地址
+delete_status 删除状态
+source_software 数据来源
+sender_account 发送者账号
+recipient_account 接收者账号
+is_recipient 0或者空:发送  1:是接收
+sender_nickname 发送者昵称
+source_account_id 来源账号ID
+source_account_nickname 来源账号昵称
+file_path 媒体文件路径
+group_num 群组号码
+}
+
+ec_trade_record_compatible ..> base_info_compatible
+im_account_compatible ..> base_info_compatible
+im_friend_chat_compatible ..> base_info_compatible
+browse_search_record_compatible ..> base_info_compatible
+call_record_compatible .up.> base_info_compatible
+contacts_id_compatible .up.> base_info_compatible
+contacts_detailed_compatible .up.> contacts_id_compatible
+rework_call .up.> call_record_compatible
+
+
+
+class "dict_sensitive_words_type(敏感词类型定义)" as dict_sensitive_words_type{
+type_name 敏感词类型
+is_open 开启标识
+}
+class "dict_sensitive_words(敏感词定义)" as dict_sensitive_words{
+word_name 敏感词
+power
+type_name 敏感词类型
+type_id 敏感词类型id
+}
+
+class "tb_word_frequency(敏感词出现统计)" as tb_word_frequency{
+key_word 关键字
+word_frequency 次数
+source 来源表
+phone 手机
+caseid 案件
+sid 分词记录ID
+contact_account_type 软件类型
+local_action 01接收方、02发送方
+}
+dict_sensitive_words -up-> dict_sensitive_words_type
+@enduml

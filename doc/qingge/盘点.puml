@@ -1,0 +1,74 @@
+@startuml
+
+
+class 盘点规则 {
+    tack_stock_rule_code 盘点规则编号,
+    tack_stock_rule_name 盘点规则名称,
+    tack_stock_rule_state 盘点规则状态  1:待提交 2:已生效 3:已过期 4:已删除 5:已作废,
+    applicable_store 适用门店 0:全部 1:部分,
+    tack_stock_frequency 盘点频率 1:日盘 2:周盘 3:月盘 4:季盘 5:年盘,
+    completion_limit 完成限制,
+    create_by 创建人,
+    create_time 创建时间,
+    take_effect_time_start 生效时间开始,
+    take_effect_time_end 生效时间结束,
+    excluded_goods 排除商品 0:样机 1:DOA 2:退货 3:库存为0,
+
+    下发门店数量
+    完成门店数量
+}
+
+class 盘点单 {
+    tack_stock_code 盘点单号,
+    tack_stock_rule_code 盘点规则编号,
+    store_no 门店id,
+    tack_stock_type 盘点类型 1 盘点下发,2 临时盘点,
+    tack_stock_state 盘点状态 1已创建2盘点中 3待审批4已完成,
+    tack_stock_result 盘点结果 1正常 2盘盈 3盘亏,
+    examine_approve_result 审批结果 1待审批 2已通过 3已拒绝,
+    start_time  开始盘点时间,
+    finish_time  完成盘点时间,
+    create_by 制单人
+}
+
+class 盘点商品 {
+tack_stock_code,
+goods_code,
+}
+
+class 盘点商品明细{
+tack_stock_code 盘点单号,
+goods_code 商品编码,
+stock_code 库存编号,
+sn 商品SN码,
+pn 商品PN码,
+attribute 库存属性1.正常；2.样机；3.退货；4.DOA,
+number 数量 SN码商品固定是1  PN可变,
+status 状态 1.盘点中 2已完成,
+transfer_no 调拨单号,
+batch 批次号,
+}
+
+class 盘点规则门店{
+id  规则门店id,
+tack_stock_rule_code 盘点规则编号,
+store_id 门店id,
+store_no 门店编号,
+}
+class 盘点规则品牌{
+tack_stock_rule_code 盘点规则编号,
+brand_id 品牌ID,
+brand_code 品牌编码,
+}
+
+盘点单 "many" -up-> "1" 盘点规则
+盘点商品 "many" -up-> "1" 盘点单
+盘点商品明细 "many" -up-> "1" 盘点单
+
+盘点规则门店 "many" -left-> "1" 盘点规则
+盘点规则品牌 "many" -up-> "1" 盘点规则
+
+
+
+@enduml
+

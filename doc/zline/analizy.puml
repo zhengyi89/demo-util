@@ -1,0 +1,433 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+
+class "tb_case_info(案件表)" as tb_case_info {
+case_no 案件编号
+case_name 案件名称
+do_case_user 办案人员姓名
+case_serial 案件编号
+}
+
+class "tb_user_case(案件用户关联表)" as tb_user_case {
+caseid 案件id
+userid 用户id
+departid 部门id
+type 分享类型：，
+}
+
+
+class "tb_import_record(导入记录表)" as tb_import_record {
+parent_case_no 案件id
+upload_time 上传时间
+create_user 上传用户
+file_name 上传文件名称
+type 文件类型
+status 上传状态
+template_id 模板id
+file_path 文件路径
+title 文件表头
+record_sucess 成功记录数
+record_fail 失败记录数
+record_repeat 重复记录数
+}
+
+class "tb_bank_deal_template(账单数据模板)" as tb_bank_deal_template{
+bank_name 模板名称
+key_list 字段英文名称
+template_type 模板类型 开户/交易详情
+title 字段中文名
+in_flag 收入标识
+out_flag 支出标识
+date_type 日期格式
+currency_unit 币种
+title_num 标题行数
+data_sort 排序方式
+modify_key_list 修改后的keylist,用作重复数据再次入库使用
+}
+
+class "tb_record_template(数据与模板关系表)" as tb_record_template{
+record_id 记录id
+template_id 模板id
+}
+
+class "tb_bank_account(案件账户信息)" as tb_bank_account{
+record_id
+account_name 账户开户名称
+id_card 开户人证件号码
+card_number 交易卡号
+account_number 交易账号
+opening_time 开户时间
+khr_phone_num 联系电话
+account_case_id 案件ID
+bank_name 开户银行名称
+bank_logo 银行logo
+deal_all_count 交易总次数(概要)
+deal_all_money 交易总金额(概要)
+net_income 净转入(概要)
+deal_balance 交易余额(概要)
+deal_in_count 转入次数(概要)
+deal_in_money 转入金额(概要)
+deal_out_count 转出次数(概要)
+deal_out_money 转出金额(概要)
+latest_deal_time 最晚交易时间
+earliest_deal_time 最早交易时间
+update_time 数据更新时间
+create_time 数据入库时间
+main_column 检索字段，用于左侧菜单树检索
+person_control_code
+person_control_name
+person_control_id_type
+person_control_id_number
+person_control_id_info
+}
+
+class "tb_bank_deal_details(账单明细)" as tb_bank_deal_details{
+record_id 导入账单id
+card_number 交易卡号
+account_number 交易账号
+deal_time 交易时间
+deal_money 交易金额
+deal_balance 账户余额
+pay_flag 收付标识
+trade_account 交易对手账卡号
+trade_name 对手户名
+abstract_descript 摘要说明
+trade_bank 交易网点名称
+ip_addr IP地址
+mac_addr mac地址
+deal_no 交易流水号
+pk_ PK值（判断是否重复）
+file_name 数据来源
+}
+
+class "tb_bank_tag(案件用户银行卡交易信息)" as tb_bank_tag{
+card_name 实际使用人姓名
+user_number 本方卡号
+user_id_number 本方身份证号
+card_number 对方卡号
+record_id 导入记录id
+account_name 本方户名(概要)
+attention 关注度： 1重点  0一般   -1忽略  默认为0
+deal_all_count 交易总次数(概要)
+deal_all_money 交易总金额(概要)
+net_income 净转入(概要)
+deal_in_count 转入次数(概要)
+deal_in_money 转入金额(概要)
+deal_out_count 转出次数(概要)
+deal_out_money 转出金额(概要)
+latest_deal_time 最晚交易时间
+earliest_deal_time 最早交易时间
+}
+
+
+class "tb_comm_template(话单模板定义)" as tb_comm_template{
+comm_name 模板名称
+key_list 字段英文名称
+template_type 模板类型
+title 字段中文名
+date_type 日期格式
+initiative_call 主叫标志
+passive_call 被叫标志
+time_unit 通话时长单位
+title_num 标题行数
+separator 大区小区分隔符
+}
+
+
+class "tenpay_person_reginfo(微信流水账户)" as tenpay_person_reginfo{
+register_name 注册姓名
+account 账号
+status 账户状态
+register_time 注册时间
+logout_time 注销时间
+register_id_card 注册身份证号
+register_phone 绑定手机
+register_status 绑定状态
+open_info 开户信息
+bank_account 银行账号
+case_id
+record_id
+}
+
+class "wx_reginfo(微信注册信息)" as wx_reginfo{
+
+
+}
+
+
+
+
+class "wx_login_ip(微信登录信息)" as wx_login_ip{
+
+
+}
+
+
+
+
+
+class "tb_calls_number(用户话单账户)" as tb_calls_number {
+case_id
+record_id
+account 号码或账号
+name 姓名
+idcard 身份证号码
+home_address 家庭地址
+create_time 创建时间
+sex 性别
+communicator 运营商
+home_area 用户号码归属地
+com_logo 运营商logo
+count 通联总数
+count_call 通话总数
+all_call_dur 通话总时长
+count_sms 短信总数
+count_call_in 被叫总数
+call_in_duration 被叫总时长
+count_call_out 主叫总数
+call_out_duration 主叫总时长
+min_call_day 最初通联时间
+max_call_day 最后通联时间
+person_control_code
+person_control_name
+person_control_id_type
+person_control_id_number
+person_control_id_info
+}
+
+
+class "tb_calls_data(话单明细)" as tb_calls_data{
+record_id
+user_num 用户号码
+id_card 本方证件号码
+name 本方姓名
+relate_num 对方号码
+relate_name 对方户名
+record_type 话单类型(通话\短信)
+call_date 通话时间
+call_place 通信地点
+call_time 呼叫时间
+call_duration 通话时长
+call_type 通话类型(主\被叫)
+lac 基站主代码
+ci 基站小区码
+nid 电信基站NID
+file_name 源文件名称
+pk_ md5值
+dial_type 呼叫类型(国内本地)
+lacci_hex 基站代码（16进制）
+}
+
+class tb_tag{
+card_name 实际使用人姓名
+place 归属地
+user_number 本方号码
+card_number 对方号码
+card_type 卡类型
+record_id
+attention 关注度： 1重点  0一般   -1忽略  默认为0
+latest_call_time 最晚通话时间
+earliest_call_time 最早通话时间
+all_count 通联总数
+call_count 通话总数
+sms_count 短信总数
+all_call_dur 通话总时长（秒）
+call_out 主叫次数
+call_out_duration 主叫总时长
+call_in 被叫次数
+call_in_duration 被叫总时长
+}
+
+class "tb_persons_involved(涉案人员信息)" as tb_persons_involved{
+name 姓名
+id_number 身份证号码
+case_id 案件id
+extract_status 0未抽取 1抽取
+data_source 数据来源
+}
+
+class tb_sys_log {
+user_id 用户id
+user_name 用户名
+content 操作内容
+ip 操作人id
+user_account 操作账号
+opt_type 操作类型
+case_id 案件id
+data_sucess_num 成功数据条数
+data_repeate_num 重复数据条数
+data_fail_num 失败数据条数
+}
+
+
+class tb_browse_record{
+user_id 浏览用户id
+content 浏览内容
+module 所属功能模块
+url 页面对应url
+parameter 必要参数
+page_data 页面字段信息
+operator  操作人姓名
+case_id 案件id
+}
+
+enum type {
+depart:部门
+person:个人
+}
+
+
+class id_card_info{
+id_card 身份证前6位
+province 归属
+}
+
+
+class "tb_file(电子数据导入记录)" as tb_file{
+name 文件名称
+filesize 文件大小
+path 文件路径
+status 保存状态
+userid 操作人
+createtime 创建时间
+caseid
+checkin_status 登记完成状态：0：未完成；1：登记完成
+import_flag 区分扫描或批量导入: 0-批量导入 ; 1-扫描导入
+delete_status 删除状态，0为未删除，1为已删除
+error_message 文件错误信息
+md5 文件MD5值
+}
+
+class "tb_record(电子数据导入统计)" as tb_record{
+caseid
+case_name
+owner 设备归属人
+phone 手机号码
+upload_file_num 待上传文件的数量
+analyze_file_num 完成解析文件的数量
+analyze_device 取证设备名称
+taskid 解析任务的id,即文件对象id
+status 操作状态
+cteateuserid 上传人员id
+sourceindex 源文件入口文件
+isdelete 是否删除：1为待删除状态
+standardization_total 标准化入库模块总数量
+standardization_finish_num 标准化入库模块完成数量数量
+file_name 报告的名字
+isexport_bcp 是否导出bcp(0未导出过  1导出过)
+html_total html报告总数
+html_handle 完成处理的html总数
+xml_total xml报告总数
+xml_handle 完成处理的xml总数
+file_total 文件总数
+file_handle 完成处理的文件总数
+fuse_complete 2:融合完成
+fusion_total 数据融合模块总数
+fusion_handle 完成数据融合模块总数
+case_code 案件编号
+}
+
+class tb_xml_record{
+record_id
+name 文件名称
+status
+cost_time 处理耗时(秒)
+}
+
+class tb_audio_media_record{
+record_id
+status
+cost_time 处理耗时(秒)
+}
+
+class tb_json_record{
+name 文件名称
+path 文件路径
+title 标题
+title_path 标题全路径
+status
+record_id
+faile_count 失败次数
+file_num 文件解析号码顺序
+cost_time 文件解析耗时
+}
+
+class tb_file_record{
+name 文件名称
+path 文件路径
+f_type 文件类型
+f_size 文件大小
+analyze_device 取证设备名称
+read_content 是否已经读取内容做全文检索
+status
+record_id
+caseid
+faile_count 失败次数
+handler_level 是否优先处理，0为优先 1为普通
+cost_time 文件解析耗时
+}
+
+class tb_file_record_detail{
+name 文件名称
+path 文件路径
+f_on_line 在线预览文件名
+f_type 文件类型
+f_size 文件大小
+content 文件内容
+record_id
+caseid
+}
+
+class card_bin_config{
+card_bin 卡bin
+card_name 卡名称
+bank_name 银行名称
+card_length 卡号长度
+type
+org_code 卡编号
+remark
+flag
+logo 银行logo
+}
+
+enum record_status{
+0：待处理
+1：处理中
+2：处理完成
+-1：处理失败
+}
+
+tb_audio_media_record -up-> tb_record
+tb_xml_record -up-> tb_record
+tb_json_record -up-> tb_record
+tb_file_record -up-> tb_record
+record_status .right.>tb_record
+
+tb_file_record_detail .up.> tb_file_record
+
+
+
+type .> tb_user_case
+tb_user_case -> tb_case_info
+tb_import_record -up-> tb_case_info
+
+tb_record_template->tb_import_record
+
+tb_bank_tag .up.tb_bank_deal_details
+
+tb_bank_account -up->tb_import_record
+tb_bank_deal_details .left. tb_bank_account
+tb_bank_deal_details .up. tb_bank_deal_template
+tb_bank_account .up. tb_bank_deal_template
+
+tb_calls_number -up->tb_import_record
+tb_calls_data .right.tb_calls_number
+tb_calls_number .up. tb_comm_template
+tb_calls_data .up. tb_comm_template
+tb_tag .up. tb_calls_data
+
+
+
+tb_record .up.> tb_file
+@enduml
