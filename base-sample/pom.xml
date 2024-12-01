@@ -12,7 +12,7 @@
     <artifactId>base-sample</artifactId>
 
     <properties>
-        <runtime.version>7.0.0.Final</runtime.version>
+        <runtime.version>7.60.0.Final</runtime.version>
     </properties>
 
     <dependencies>
